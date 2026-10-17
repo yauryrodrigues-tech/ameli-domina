@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Amelie Dominó">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<meta name="theme-color" content="#05071a">
+<title>Amelie Neon Dominó — O Reino dos Poderes</title>
+<style>:root{
+  --bg0:#05071a;--bg1:#0a1030;--glass:rgba(16,24,64,.62);--glass2:rgba(30,40,100,.5);
+  --cy:#27e6ff;--bl:#3a7bff;--pu:#a24bff;--pk:#ff4fb8;--gd:#ffcf5a;--tx:#eaf2ff;--mu:#9fb0d8;--ok:#52ffa8;--bad:#ff6b7d;
+  --tw:46px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg0);color:var(--tx);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;overflow:hidden}
+body{background:radial-gradient(120% 90% at 20% 0%,#16226a 0%,#070b26 55%,#03040f 100%)}
+body.hc{--tx:#fff;--mu:#dbe5ff;--glass:rgba(0,0,20,.92)}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+#app{position:relative;z-index:1;height:100dvh;display:flex;flex-direction:column;max-width:1100px;margin:0 auto}
+.scr{flex:1;min-height:0;display:flex;flex-direction:column;padding:12px 14px 16px;overflow-y:auto}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{border:1px solid rgba(39,230,255,.55);background:linear-gradient(180deg,rgba(58,123,255,.35),rgba(162,75,255,.28));
+  padding:14px 18px;border-radius:16px;font-weight:700;font-size:1.05rem;min-height:52px;
+  box-shadow:0 0 18px rgba(39,230,255,.25),inset 0 0 12px rgba(255,255,255,.06);transition:transform .12s,box-shadow .2s}
+.btn:hover{box-shadow:0 0 28px rgba(39,230,255,.5);transform:translateY(-1px)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible,.tile-btn:focus-visible,.endbtn:focus-visible,.pw:focus-visible{outline:3px solid var(--gd);outline-offset:2px}
+.btn.big{font-size:1.25rem;min-height:64px}
+.btn.gold{border-color:var(--gd);background:linear-gradient(180deg,rgba(255,207,90,.35),rgba(162,75,255,.3));box-shadow:0 0 22px rgba(255,207,90,.3)}
+.btn.pink{border-color:var(--pk)}
+.btn.ghost{background:var(--glass);border-color:rgba(159,176,216,.4);box-shadow:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:grayscale(.5)}
+.btn.sm{min-height:44px;padding:8px 14px;font-size:.95rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grow{flex:1}
+.card{background:var(--glass);border:1px solid rgba(120,150,255,.28);border-radius:18px;padding:14px;backdrop-filter:blur(6px);box-shadow:0 8px 30px rgba(0,0,0,.35),inset 0 0 20px rgba(80,120,255,.06)}
+h1,h2,h3{margin:.2em 0}
+h2{font-size:1.5rem;text-shadow:0 0 14px rgba(39,230,255,.6)}
+.mu{color:var(--mu)}
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.topbar h2{flex:1;margin:0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.bar{height:12px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--pu),var(--pk));border-radius:99px;transition:width .6s}
+.chip{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:.9rem}
+
+/* ----- Logo / início ----- */
+.home{align-items:center;justify-content:center;text-align:center;gap:14px}
+.logo{margin:6px 0 0}
+.logo .a{display:block;font-size:clamp(3rem,13vw,6.2rem);font-weight:900;letter-spacing:.08em;line-height:1;
+  background:linear-gradient(90deg,var(--cy),#6f8bff 30%,var(--pk) 65%,var(--gd));-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 14px rgba(120,90,255,.9)) drop-shadow(0 0 30px rgba(39,230,255,.5));animation:glow 3.2s ease-in-out infinite}
+.logo .b{display:block;font-size:clamp(1.1rem,4.4vw,1.9rem);letter-spacing:.5em;color:var(--gd);text-shadow:0 0 14px rgba(255,207,90,.8);margin-top:6px;font-weight:700}
+.slogan{color:var(--mu);max-width:560px;margin:0 auto}
+@keyframes glow{50%{filter:drop-shadow(0 0 22px rgba(255,79,184,.9)) drop-shadow(0 0 40px rgba(39,230,255,.7))}}
+.menu{display:flex;flex-direction:column;gap:12px;width:min(420px,100%)}
+.mini{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:min(520px,100%)}
+.mini .btn{padding:8px 2px;font-size:.8rem;min-height:62px;display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center}
+.mini .btn svg{width:22px;height:22px}
+.hero-dom{display:flex;gap:12px;justify-content:center;margin:2px 0}
+
+/* ----- Peças ----- */
+.tile{display:block;filter:drop-shadow(0 0 5px rgba(39,230,255,.55)) drop-shadow(0 3px 3px rgba(0,0,0,.55));overflow:visible}
+.tile-btn{background:none;border:0;padding:3px;border-radius:10px;position:relative;touch-action:manipulation}
+.tile-btn.playable .tile{filter:drop-shadow(0 0 9px var(--ok)) drop-shadow(0 3px 3px rgba(0,0,0,.55))}
+.tile-btn.playable{transform:translateY(-6px)}
+.tile-btn.playable::after{content:"✓";position:absolute;top:-2px;right:-2px;background:var(--ok);color:#012;font-weight:900;width:20px;height:20px;border-radius:50%;font-size:13px;display:grid;place-items:center;box-shadow:0 0 8px var(--ok)}
+.tile-btn.dim .tile{opacity:.72;filter:saturate(.6) brightness(.82) drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.tile-btn.sel{transform:translateY(-16px) scale(1.06)}
+.tile-btn.sel .tile{filter:drop-shadow(0 0 12px var(--pk)) drop-shadow(0 0 22px var(--gd))}
+.tile-btn.hint .tile{animation:pulse 1s infinite}
+.tile-btn.pick .tile{filter:drop-shadow(0 0 12px var(--gd))}
+@keyframes pulse{50%{filter:drop-shadow(0 0 16px var(--gd))}}
+.tile-btn.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* ----- Jogo ----- */
+.game{padding:8px 10px 10px;gap:8px}
+.game>*{flex-shrink:0}.game .table{flex-shrink:0}
+.hud{display:flex;align-items:center;gap:8px}
+.hud .title{flex:1;font-weight:700;color:var(--cy);text-shadow:0 0 10px rgba(39,230,255,.6);font-size:.95rem}
+.opp{display:flex;align-items:center;gap:10px;padding:8px 10px}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:radial-gradient(circle,rgba(162,75,255,.5),rgba(10,16,48,.8));border:2px solid var(--pu);box-shadow:0 0 14px var(--pu)}
+.backs{display:flex;gap:3px;flex-wrap:wrap}
+.bubble{margin-left:auto;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:14px 14px 14px 4px;font-size:.9rem;max-width:45%}
+.think{display:inline-flex;gap:3px}.think i{width:6px;height:6px;border-radius:50%;background:var(--cy);animation:bl 1s infinite}.think i:nth-child(2){animation-delay:.2s}.think i:nth-child(3){animation-delay:.4s}
+@keyframes bl{50%{opacity:.2;transform:translateY(-3px)}}
+.table{position:relative;flex:1 0 auto;min-height:250px;border-radius:22px;padding:10px;display:flex;flex-direction:column;gap:8px;overflow:hidden;
+  background:radial-gradient(90% 100% at 50% 0%,rgba(39,230,255,.18),rgba(20,30,90,.55) 55%,rgba(6,10,36,.85));border:2px solid rgba(39,230,255,.6);
+  box-shadow:0 0 30px rgba(39,230,255,.35),inset 0 0 40px rgba(58,123,255,.25)}
+body.t-aurora .table{background:radial-gradient(90% 100% at 50% 0%,rgba(255,79,184,.22),rgba(70,30,130,.6) 55%,rgba(14,6,36,.9));border-color:var(--pk);box-shadow:0 0 30px rgba(255,79,184,.4),inset 0 0 40px rgba(162,75,255,.3)}
+body.t-vip .table{background:radial-gradient(90% 100% at 50% 0%,rgba(255,207,90,.25),rgba(80,40,120,.6) 55%,rgba(14,6,30,.9));border-color:var(--gd);box-shadow:0 0 30px rgba(255,207,90,.4),inset 0 0 40px rgba(162,75,255,.3)}
+.ends{display:flex;gap:8px;align-items:stretch}
+.endbtn{flex:1;min-height:54px;border-radius:14px;border:2px dashed rgba(159,176,216,.35);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.9rem;color:var(--mu)}
+.endbtn.on{border:2px solid var(--gd);color:#fff;background:rgba(255,207,90,.16);animation:glowb 1s infinite;cursor:pointer}
+.endbtn.on::before{content:"▶ ";color:var(--gd)}
+.endbtn.drop{background:rgba(39,230,255,.25)}
+@keyframes glowb{50%{box-shadow:0 0 22px var(--gd)}}
+.board{flex:1;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start;justify-content:center;padding:6px;min-height:80px;align-items:center}
+.board .tile{filter:drop-shadow(0 0 4px rgba(39,230,255,.5)) drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.board .last .tile{filter:drop-shadow(0 0 10px var(--gd))}
+.board .wildt .tile{filter:drop-shadow(0 0 10px var(--pk))}
+.board .ent{animation:drop .35s ease-out}
+@keyframes drop{from{transform:translateY(-26px) scale(1.2);opacity:0}}
+.empty{color:var(--mu);text-align:center;width:100%}
+.coach{background:rgba(255,207,90,.14);border:1px solid var(--gd);border-radius:12px;padding:8px 12px;font-size:.95rem}
+.status{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.9rem}
+.energy{display:flex;gap:3px;align-items:center}
+.energy i{width:10px;height:16px;border-radius:3px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2)}
+.energy i.f{background:linear-gradient(180deg,var(--cy),var(--bl));box-shadow:0 0 8px var(--cy)}
+.powers{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 6px}
+.pw{flex:0 0 auto;width:78px;border-radius:14px;border:1px solid rgba(162,75,255,.6);background:rgba(60,30,120,.55);padding:6px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.7rem;text-align:center;line-height:1.1}
+.pw svg{width:30px;height:30px}
+.pw b{color:var(--gd)}
+.pw[disabled]{opacity:.4}
+.pw.on{border-color:var(--gd);box-shadow:0 0 14px var(--gd)}
+.hand{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:18px 0 8px;min-height:calc(var(--tw)*2 + 28px);position:sticky;bottom:-10px;background:linear-gradient(180deg,rgba(5,7,26,0),rgba(5,7,26,.92) 28%);z-index:3}
+.acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.fx{position:absolute;inset:0;pointer-events:none;z-index:5}
+.bolt path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;filter:drop-shadow(0 0 6px var(--cy)) drop-shadow(0 0 12px var(--pu));stroke-dasharray:1200;stroke-dashoffset:1200;animation:zap .55s forwards}
+@keyframes zap{to{stroke-dashoffset:0;opacity:0}}
+.portal{position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px;border-radius:50%;border:4px solid var(--pk);box-shadow:0 0 30px var(--pu),inset 0 0 30px var(--cy);animation:port 1.2s ease-out forwards}
+@keyframes port{40%{transform:scale(9) rotate(180deg);opacity:1}100%{transform:scale(12) rotate(360deg);opacity:0}}
+.star{position:absolute;color:var(--gd);animation:fall 1s ease-in forwards;text-shadow:0 0 8px var(--gd)}
+@keyframes fall{to{transform:translateY(120px);opacity:0}}
+.flash{position:absolute;inset:0;border-radius:22px;animation:fl .6s forwards;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 65%)}
+@keyframes fl{to{opacity:0}}
+
+/* ----- Modais ----- */
+.modal-bg{position:fixed;inset:0;z-index:20;background:rgba(2,4,18,.78);display:grid;place-items:center;padding:14px}
+.modal{width:min(520px,100%);max-height:92dvh;overflow:auto;background:linear-gradient(180deg,#121a4d,#0a0f32);border:2px solid var(--cy);border-radius:22px;padding:18px;box-shadow:0 0 40px rgba(39,230,255,.4);animation:pop .3s}
+.modal.gold{border-color:var(--gd);box-shadow:0 0 40px rgba(255,207,90,.5)}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.toast{position:fixed;left:50%;top:76px;transform:translateX(-50%);z-index:30;background:rgba(10,16,50,.95);border:1px solid var(--gd);padding:10px 16px;border-radius:14px;max-width:90vw;text-align:center;animation:pop .2s}
+canvas.conf{position:fixed;inset:0;z-index:25;pointer-events:none;width:100%;height:100%}
+.chest{width:150px;height:130px;margin:6px auto;display:block;filter:drop-shadow(0 0 16px var(--cy))}
+.chest .lid{transform-origin:20px 52px;animation:lid 1s .2s forwards}
+@keyframes lid{to{transform:rotate(-55deg)}}
+.chest .beam{opacity:0;animation:beam 1s .5s forwards}
+@keyframes beam{to{opacity:.9}}
+
+/* ----- Itens ----- */
+.item{display:flex;gap:10px;align-items:center}
+.item.locked{opacity:.6}
+.item .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:26px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);flex:none}
+.item .ic.skin{width:80px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
+.tab{padding:8px 14px;border-radius:99px;border:1px solid rgba(159,176,216,.4);background:var(--glass);white-space:nowrap;min-height:40px}
+.tab.on{border-color:var(--cy);background:rgba(39,230,255,.2)}
+.vipdoor{margin:10px auto;width:min(280px,80%);aspect-ratio:3/4;border-radius:120px 120px 14px 14px;border:3px solid var(--gd);display:grid;place-items:center;text-align:center;padding:16px;
+  background:repeating-linear-gradient(0deg,rgba(255,207,90,.08) 0 2px,transparent 2px 6px),radial-gradient(circle,rgba(162,75,255,.5),rgba(10,10,40,.9));box-shadow:0 0 40px rgba(255,207,90,.5),inset 0 0 40px rgba(162,75,255,.5);animation:glow 3s infinite}
+.vip-room{background:linear-gradient(180deg,rgba(255,207,90,.08),rgba(162,75,255,.12));border-radius:20px;padding:8px}
+.npc{display:flex;gap:10px;align-items:flex-start}
+.npc .avatar{border-color:var(--gd);box-shadow:0 0 14px var(--gd)}
+.slot{display:inline-flex;align-items:center;justify-content:center;border:3px dashed var(--gd);border-radius:12px;color:var(--gd);font-weight:900;font-size:2rem;animation:glowb 1.2s infinite}
+.puz{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.seq{display:flex;gap:6px;flex-wrap:wrap;min-height:48px;padding:8px;border-radius:12px;border:1px dashed var(--cy);justify-content:center}
+.wiz{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+label.sw{display:flex;align-items:center;gap:12px;padding:10px 0;min-height:52px}
+input[type=range]{width:140px}
+input[type=checkbox]{width:26px;height:26px;accent-color:var(--cy)}
+body.rm *{animation-duration:.01s!important;animation-iteration-count:1!important;transition:none!important}
+body.rm #stars{display:none}
+@media (max-height:640px){.logo .a{font-size:3.2rem}.hero-dom{display:none}}
+@media (min-width:760px){:root{--tw:58px}.hand{gap:10px}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
+
+/* ================= MOBILE-FIRST (partida em tela fixa) ================= */
+html,body{overscroll-behavior:none;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-text-size-adjust:100%}
+input[type=range]{touch-action:pan-x}
+.scr{padding:max(12px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+.scr.game{height:100dvh;overflow:hidden;padding:max(8px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));gap:6px}
+.game>*{flex-shrink:0}
+.game .hud{gap:6px;min-height:46px}
+.btn.ico{min-height:44px;min-width:44px;padding:4px 10px;font-size:1.15rem}
+.hud .opp{flex:1;min-width:0;display:flex;align-items:center;gap:8px;padding:0}
+.avatar.sm{width:34px;height:34px;font-size:19px;flex:none}
+.opp .oi{display:flex;flex-direction:row;align-items:center;gap:6px;line-height:1.1;min-width:0;font-size:.9rem;flex-wrap:nowrap}
+.opp .backs{display:flex;gap:2px;flex-wrap:nowrap;overflow:hidden;min-width:0}
+.opp .bubble{margin-left:auto;min-width:0;max-width:44%;font-size:.78rem;padding:4px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.1);border-radius:12px 12px 12px 3px}
+.hud .chip.turn{flex:none;font-size:.82rem;padding:5px 9px}
+.game .table{flex:1 1 0;min-height:110px;padding:8px;gap:6px}
+.table .ttl{position:absolute;top:4px;left:50%;transform:translateX(-50%);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);opacity:.75;pointer-events:none;z-index:1}
+.table .ends{margin-top:4px}
+.endbtn{min-height:50px;font-size:.88rem}
+.endbtn span{white-space:nowrap}
+.board{flex:1 1 0;min-height:0;padding:4px;gap:4px}
+.board>div{flex:none;display:flex}
+.board .tile{height:auto}
+.game .coach{font-size:.85rem;padding:6px 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.game.tutg .coach{display:block;font-size:.95rem}
+.ctl{display:flex;flex-direction:column;gap:5px}
+.pwrap{display:flex;flex-direction:column;gap:3px}
+.status{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;font-size:.8rem;overflow:hidden}
+.status .chip{padding:2px 8px;font-size:.75rem;white-space:nowrap}
+.status .chip.rv{margin-left:auto}
+.status .q{min-height:32px;min-width:32px;padding:0 8px;border-radius:99px}
+.energy i{width:8px;height:14px}
+.powers{display:flex;gap:6px;overflow-x:auto;padding:2px 1px 4px;scrollbar-width:none}
+.powers::-webkit-scrollbar{display:none}
+.pw{flex:1 0 54px;width:auto;min-width:54px;min-height:54px;padding:4px 2px;font-size:.66rem}
+.pw svg{width:26px;height:26px}
+.pw .pn{display:none}
+@media (min-width:480px){.pw .pn{display:block}.pw{flex-basis:70px}}
+.acts{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap}
+.acts .btn{min-height:48px;padding:8px 12px;font-size:.98rem;flex:1 1 0;max-width:210px;white-space:nowrap}
+.acts .btn.ghost,.acts .btn.sm{flex:0 0 auto;min-width:48px}
+.acts small{opacity:.8}
+.game .hand{position:static;flex:none;flex-wrap:wrap;gap:5px;padding:16px 0 0;min-height:0;background:none;bottom:auto}
+.tile-btn{padding:2px}
+.toast{top:max(6px,env(safe-area-inset-top));bottom:auto;font-size:.92rem;box-shadow:0 6px 24px rgba(0,0,0,.6)}
+.modal{max-height:calc(100dvh - 24px)}
+.home .menu .btn{min-height:58px}
+
+/* Paisagem em celular: tudo numa faixa só, mesa larga */
+@media (orientation:landscape) and (max-height:520px){
+  .scr.game{gap:4px}
+  .game .hud{min-height:40px}
+  .game .coach{display:none}.game.tutg .coach{display:block;font-size:.8rem;padding:4px 8px}
+  .table .ttl{display:none}
+  .table .ends{margin-top:0}
+  .endbtn{min-height:42px}
+  .ctl{flex-direction:row;align-items:center;gap:8px}
+  .ctl .pwrap{flex:1;min-width:0}
+  .ctl .acts{flex:none}
+  .acts .btn{min-height:44px;padding:6px 10px}
+  .pw{min-height:44px;flex-basis:46px}.pw svg{width:22px;height:22px}.pw .pn{display:none!important}.status .chip.rv{display:none}
+  .status{font-size:.72rem}.energy i{height:10px}
+  .game .hand{padding-top:12px}
+  .home .hero-dom,.home .slogan{display:none}
+  .logo .a{font-size:3rem}
+  .scr.home{gap:8px}
+}
+@media (max-height:700px) and (orientation:portrait){
+  .game .hud{min-height:42px}
+  .acts .btn{min-height:44px}
+  .pw{min-height:48px}
+}
+
+/* ---- Botão de som ---- */
+.snd{flex:none;min-width:44px;min-height:44px;font-size:1.25rem;padding:0 10px}
+.snd.lg{min-width:52px;min-height:52px;font-size:1.5rem}
+.home-snd{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:2px}
+.snd-hint{animation:sndp 1.6s ease-in-out infinite;font-size:.8rem}
+@keyframes sndp{50%{box-shadow:0 0 14px var(--cy)}}
+body.rm .snd-hint{animation:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-skin-marfim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf5"/><stop offset=".55" stop-color="#f1e8cf"/><stop offset="1" stop-color="#d9ccaa"/></linearGradient>
+    <linearGradient id="g-skin-cristal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2fcff"/><stop offset=".55" stop-color="#bfe7ff"/><stop offset="1" stop-color="#8ec6ee"/></linearGradient>
+    <linearGradient id="g-skin-rosa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4fa"/><stop offset=".55" stop-color="#ffd0e6"/><stop offset="1" stop-color="#eba3c8"/></linearGradient>
+    <linearGradient id="g-skin-ouro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0b8"/><stop offset=".5" stop-color="#ffd25a"/><stop offset="1" stop-color="#d49a1a"/></linearGradient>
+    <linearGradient id="g-back" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1b7a"/><stop offset="1" stop-color="#0d1a58"/></linearGradient>
+    <radialGradient id="g-pip" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#4a4a58"/><stop offset=".45" stop-color="#14141c"/><stop offset="1" stop-color="#000"/></radialGradient>
+  </defs>
+</svg>
+<canvas id="stars"></canvas>
+<div id="app" role="main"></div>
+<div id="layer"></div>
+<script>/* AMELIE NEON DOMINÓ — Motor de regras (independente da interface).
+   Funciona no navegador (window.Engine) e no Node (require). */
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.Engine = factory();
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  /* ---------- Padrões tradicionais de pontos (grade 3x3: [linha, coluna]) ---------- */
+  const PIPS = {
+    0: [],
+    1: [[1, 1]],
+    2: [[0, 2], [2, 0]],
+    3: [[0, 2], [1, 1], [2, 0]],
+    4: [[0, 0], [0, 2], [2, 0], [2, 2]],
+    5: [[0, 0], [0, 2], [1, 1], [2, 0], [2, 2]],
+    6: [[0, 0], [1, 0], [2, 0], [0, 2], [1, 2], [2, 2]],
+  };
+  // Rotação de 90° (peça deitada): (r,c) -> (c, 2-r)
+  function rotatePips(list) { return list.map(([r, c]) => [c, 2 - r]); }
+
+  /* ---------- Utilidades ---------- */
+  function rng(seed) {
+    let s = seed >>> 0;
+    return function () {
+      s |= 0; s = (s + 0x6D2B79F5) | 0;
+      let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function shuffle(arr, r) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(r() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  const other = (p) => (p === 'p' ? 'c' : 'p');
+  const isDouble = (t) => t.a === t.b;
+  const tileSum = (t) => t.a + t.b;
+  const handSum = (h) => h.reduce((s, t) => s + t.a + t.b, 0);
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  const parseTile = (id) => { const [a, b] = id.split('-').map(Number); return { id, a, b }; };
+
+  function makeDeck() {
+    const d = [];
+    for (let a = 0; a <= 6; a++) for (let b = a; b <= 6; b++) d.push({ id: a + '-' + b, a, b });
+    return d;
+  }
+
+  /* ---------- Poderes (configuráveis) ---------- */
+  const POWERS = {
+    raio: { id: 'raio', name: 'Raio Cósmico', cost: 3, cd: 0, short: 'O adversário compra 1 peça do monte.', rule: 'Uma descarga atinge o adversário: ele compra 1 peça do monte (se houver). O Escudo Neon bloqueia este poder.' },
+    escudo: { id: 'escudo', name: 'Escudo Neon', cost: 2, cd: 0, short: 'Bloqueia o próximo poder do adversário.', rule: 'Cria um escudo que bloqueia o próximo poder usado contra você (Raio ou Congelamento). O escudo some depois de bloquear. Só um escudo por vez.' },
+    portal: { id: 'portal', name: 'Portal Dimensional', cost: 4, cd: 0, short: 'Troca uma peça da sua mão por outra do monte.', rule: 'Escolha uma peça da sua mão: ela vai para o fundo do monte e você recebe a peça do topo. Precisa haver peças no monte.' },
+    congelar: { id: 'congelar', name: 'Congelamento', cost: 3, cd: 0, short: 'O adversário fica 2 turnos sem poderes.', rule: 'O adversário não pode usar poderes nos próximos 2 turnos dele. O Escudo Neon bloqueia este poder.' },
+    visao: { id: 'visao', name: 'Visão de Detetive', cost: 1, cd: 0, short: 'Revela uma pista: quantas peças do rival encaixam e sua melhor jogada.', rule: 'Mostra quantas peças do adversário encaixam nas pontas agora e sugere a sua melhor jogada. Não mostra quais peças ele tem.' },
+    coringa: { id: 'coringa', name: 'Coringa Dimensional', cost: 5, cd: 0, limit: 1, short: '1 vez por partida: jogue qualquer peça numa ponta.', rule: 'Uma vez por partida, você pode jogar qualquer peça da mão em qualquer ponta, mesmo sem combinar. A ponta passa a mostrar a outra metade da peça. Depois de ativar, escolha a peça e a ponta.' },
+    duplicador: { id: 'duplicador', name: 'Duplicador de Energia', cost: 2, cd: 3, short: 'Ganha +4 de energia (limite 10).', rule: 'Gasta 2 de energia e devolve 4 (ganho líquido de 2). Precisa esperar 3 turnos seus para usar de novo. A energia nunca passa do máximo.' },
+  };
+  const POWER_IDS = Object.keys(POWERS);
+  const DEFAULT_CFG = () => ({ maxEnergy: 10, startEnergy: 3, powers: clone(POWERS) });
+
+  /* ---------- Criação da partida ---------- */
+  function rankTile(t) { return isDouble(t) ? 100 + t.a : tileSum(t) + Math.max(t.a, t.b) * 0.01; }
+
+  function pickStarter(st) {
+    let best = null;
+    for (const p of ['p', 'c']) {
+      for (const t of st.hands[p]) {
+        if (!best || rankTile(t) > rankTile(best.t)) best = { p, t };
+      }
+    }
+    st.turn = best.p;
+    st.forcedFirst = best.t.id;
+  }
+
+  function newGame(o) {
+    o = o || {};
+    const r = rng(o.seed != null ? o.seed : (Date.now() ^ (Math.random() * 1e9)));
+    const cfg = DEFAULT_CFG();
+    if (o.startEnergy != null) cfg.startEnergy = o.startEnergy;
+    if (o.powerConfig) for (const k in o.powerConfig) Object.assign(cfg.powers[k], o.powerConfig[k]);
+    const deck = shuffle(makeDeck(), r);
+    const st = {
+      mode: o.mode || 'classic', level: o.level || 'medium', powersOn: !!o.powers, cfg,
+      hands: { p: deck.slice(0, 7), c: deck.slice(7, 14) }, stock: deck.slice(14),
+      board: [], turn: 'p', passes: 0, over: false, result: null, forcedFirst: null,
+      energy: { p: cfg.startEnergy, c: o.enemyEnergy != null ? o.enemyEnergy : cfg.startEnergy },
+      shield: { p: false, c: false }, frozen: { p: 0, c: 0 }, cooldown: { p: {}, c: {} },
+      wildUsed: { p: false, c: false }, wildArmed: false, powerUsedThisTurn: false,
+      drewThisTurn: false, missing: { p: [], c: [] },
+      stats: { p: { played: 0, doubles: 0, powers: 0, draws: 0 }, c: { played: 0, doubles: 0, powers: 0, draws: 0 } },
+      turnNo: 1, log: [],
+    };
+    if (o.custom) {
+      Object.assign(st, clone(o.custom));
+      if (o.custom.forcedFirst === undefined) st.forcedFirst = null;
+    } else pickStarter(st);
+    return st;
+  }
+
+  /* ---------- Jogadas ---------- */
+  function endsOf(st) {
+    if (!st.board.length) return null;
+    return { L: st.board[0].l, R: st.board[st.board.length - 1].r };
+  }
+
+  function movesForTile(st, t, wild) {
+    const e = endsOf(st);
+    if (!e) return [{ tileId: t.id, side: 'S', l: t.a, r: t.b, wild: false }];
+    const out = [];
+    const L = [], R = [];
+    if (t.b === e.L) L.push({ l: t.a, r: t.b });
+    if (t.a === e.L && t.a !== t.b) L.push({ l: t.b, r: t.a });
+    if (t.a === e.R) R.push({ l: t.a, r: t.b });
+    if (t.b === e.R && t.a !== t.b) R.push({ l: t.b, r: t.a });
+    L.forEach((m) => out.push({ tileId: t.id, side: 'L', l: m.l, r: m.r, wild: false }));
+    R.forEach((m) => out.push({ tileId: t.id, side: 'R', l: m.l, r: m.r, wild: false }));
+    if (wild) {
+      if (!L.length) {
+        out.push({ tileId: t.id, side: 'L', l: t.a, r: t.b, wild: true });
+        if (t.a !== t.b) out.push({ tileId: t.id, side: 'L', l: t.b, r: t.a, wild: true, flip: true });
+      }
+      if (!R.length) {
+        out.push({ tileId: t.id, side: 'R', l: t.a, r: t.b, wild: true });
+        if (t.a !== t.b) out.push({ tileId: t.id, side: 'R', l: t.b, r: t.a, wild: true, flip: true });
+      }
+    }
+    return out;
+  }
+
+  function legalMoves(st, player) {
+    const wild = st.wildArmed && st.turn === player;
+    const out = [];
+    for (const t of st.hands[player]) {
+      if (st.forcedFirst && st.board.length === 0 && t.id !== st.forcedFirst) continue;
+      movesForTile(st, t, wild).forEach((m) => out.push(m));
+    }
+    return out;
+  }
+  const playableTileIds = (st, player) => Array.from(new Set(legalMoves(st, player).map((m) => m.tileId)));
+
+  /* ---------- Poderes: validação ---------- */
+  function powerError(st, player, id, arg) {
+    const pw = st.cfg.powers[id];
+    if (!st.powersOn) return 'Os poderes estão desligados neste modo.';
+    if (!pw) return 'Poder desconhecido.';
+    if (st.over) return 'A partida já terminou.';
+    if (st.turn !== player) return 'Não é a sua vez.';
+    if (st.powerUsedThisTurn) return 'Só um poder por turno.';
+    if (st.frozen[player] > 0) return 'Você está congelado e não pode usar poderes.';
+    if (st.energy[player] < pw.cost) return 'Energia insuficiente.';
+    if ((st.cooldown[player][id] || 0) > 0) return 'Recarregando: ' + st.cooldown[player][id] + ' turno(s).';
+    if (pw.limit && st.wildUsed[player]) return 'Este poder só pode ser usado uma vez por partida.';
+    const opp = other(player);
+    if (id === 'raio' && st.stock.length === 0) return 'O monte está vazio.';
+    if (id === 'escudo' && st.shield[player]) return 'Você já tem um escudo ativo.';
+    if (id === 'portal') {
+      if (st.stock.length === 0) return 'O monte está vazio.';
+      if (arg == null || !st.hands[player].some((t) => t.id === arg)) return 'Escolha uma peça da sua mão.';
+    }
+    if (id === 'congelar' && st.frozen[opp] > 0) return 'O adversário já está congelado.';
+    if (id === 'coringa' && st.wildArmed) return 'O Coringa já está ativo.';
+    return null;
+  }
+
+  /* ---------- Fim de turno / partida ---------- */
+  function endTurn(st, player) {
+    if (st.powersOn) {
+      st.energy[player] = Math.min(st.cfg.maxEnergy, st.energy[player] + 1);
+      if (st.frozen[player] > 0) st.frozen[player]--;
+      for (const k in st.cooldown[player]) if (st.cooldown[player][k] > 0) st.cooldown[player][k]--;
+    }
+    st.turn = other(player);
+    st.powerUsedThisTurn = false;
+    st.wildArmed = false;
+    st.drewThisTurn = false;
+    st.turnNo++;
+  }
+
+  function finish(st, winner, reason) {
+    const sums = { p: handSum(st.hands.p), c: handSum(st.hands.c) };
+    let points = 0;
+    if (reason === 'domino') points = sums[other(winner)];
+    else if (winner) points = Math.abs(sums.p - sums.c);
+    st.over = true;
+    st.result = { winner, reason, points, sums };
+  }
+
+  /* ---------- Aplicar ação (função pura: devolve novo estado) ---------- */
+  function apply(state, action) {
+    const st = clone(state);
+    const ev = [];
+    const fail = (error) => ({ ok: false, error, state });
+    const pl = action.player;
+    if (st.over) return fail('A partida já terminou.');
+    if (st.turn !== pl) return fail('Ainda não é a sua vez.');
+
+    if (action.type === 'play') {
+      const t = st.hands[pl].find((x) => x.id === action.tileId);
+      if (!t) return fail('Essa peça não está na sua mão.');
+      if (st.forcedFirst && st.board.length === 0 && t.id !== st.forcedFirst)
+        return fail('A primeira jogada precisa ser a peça ' + st.forcedFirst.replace('-', '|') + '.');
+      let side = action.side;
+      if (st.board.length === 0) side = 'S';
+      const wild = st.wildArmed;
+      let moves = movesForTile(st, t, wild).filter((m) => m.side === side);
+      if (!moves.length) return fail('Essa peça não encaixa nessa ponta.');
+      const natural = moves.filter((m) => !m.wild);
+      let mv;
+      if (natural.length) mv = natural[0];
+      else mv = moves.find((m) => !!m.flip === !!action.flip) || moves[0];
+      const entry = { id: t.id, l: mv.l, r: mv.r, wild: !!mv.wild, by: pl };
+      if (side === 'L') st.board.unshift(entry); else st.board.push(entry);
+      st.hands[pl] = st.hands[pl].filter((x) => x.id !== t.id);
+      st.forcedFirst = null;
+      st.passes = 0;
+      st.stats[pl].played++;
+      if (isDouble(t)) st.stats[pl].doubles++;
+      if (mv.wild) st.wildArmed = false;
+      ev.push({ t: 'play', p: pl, tile: t, side: side === 'S' ? 'R' : side, wild: !!mv.wild, double: isDouble(t) });
+      if (st.hands[pl].length === 0) {
+        finish(st, pl, 'domino');
+        ev.push({ t: 'over', result: st.result });
+      } else endTurn(st, pl);
+      return { ok: true, state: st, events: ev };
+    }
+
+    if (action.type === 'draw') {
+      if (legalMoves(st, pl).length) return fail('Você tem jogada possível: não pode comprar.');
+      if (!st.stock.length) return fail('O monte está vazio. Você precisa passar a vez.');
+      const e = endsOf(st);
+      if (e) for (const v of [e.L, e.R]) if (!st.missing[pl].includes(v)) st.missing[pl].push(v);
+      st.hands[pl].push(st.stock.pop());
+      st.drewThisTurn = true;
+      st.stats[pl].draws++;
+      ev.push({ t: 'draw', p: pl });
+      return { ok: true, state: st, events: ev };
+    }
+
+    if (action.type === 'pass') {
+      if (legalMoves(st, pl).length) return fail('Você tem jogada possível: não pode passar.');
+      if (st.stock.length) return fail('Ainda há peças no monte: compre uma.');
+      const e = endsOf(st);
+      if (e) for (const v of [e.L, e.R]) if (!st.missing[pl].includes(v)) st.missing[pl].push(v);
+      st.passes++;
+      ev.push({ t: 'pass', p: pl });
+      if (st.passes >= 2) {
+        const a = handSum(st.hands.p), b = handSum(st.hands.c);
+        finish(st, a === b ? null : (a < b ? 'p' : 'c'), a === b ? 'tie' : 'blocked');
+        ev.push({ t: 'over', result: st.result });
+      } else endTurn(st, pl);
+      return { ok: true, state: st, events: ev };
+    }
+
+    if (action.type === 'power') {
+      const id = action.power;
+      const err = powerError(st, pl, id, action.arg);
+      if (err) return fail(err);
+      const pw = st.cfg.powers[id];
+      const opp = other(pl);
+      st.energy[pl] -= pw.cost;
+      st.powerUsedThisTurn = true;
+      st.stats[pl].powers++;
+      if (pw.cd) st.cooldown[pl][id] = pw.cd;
+      const e = { t: 'power', p: pl, power: id, blocked: false };
+      if (id === 'raio' || id === 'congelar') {
+        if (st.shield[opp]) { st.shield[opp] = false; e.blocked = true; }
+        else if (id === 'raio') { st.hands[opp].push(st.stock.pop()); e.drew = 1; }
+        else st.frozen[opp] = 2;
+      } else if (id === 'escudo') st.shield[pl] = true;
+      else if (id === 'portal') {
+        const i = st.hands[pl].findIndex((x) => x.id === action.arg);
+        const out = st.hands[pl][i];
+        const inn = st.stock.pop();
+        st.hands[pl][i] = inn; st.stock.unshift(out);
+        e.swapped = { out: out.id, inn: inn.id };
+      } else if (id === 'visao') {
+        const fits = playableTileIds(Object.assign({}, st, { turn: opp, wildArmed: false, forcedFirst: null }), opp).length;
+        const best = chooseMove(Object.assign({}, st, { forcedFirst: st.forcedFirst }), pl, 'hard', rng(7));
+        e.info = { oppFits: fits, hint: best ? best.tileId : null, hintSide: best ? best.side : null };
+      } else if (id === 'coringa') { st.wildArmed = true; st.wildUsed[pl] = true; }
+      else if (id === 'duplicador') st.energy[pl] = Math.min(st.cfg.maxEnergy, st.energy[pl] + 4);
+      ev.push(e);
+      return { ok: true, state: st, events: ev };
+    }
+    return fail('Ação desconhecida.');
+  }
+
+  /* ---------- IA ----------
+     Usa APENAS: a própria mão, a mesa, o tamanho do monte, o tamanho da mão do adversário
+     e informação pública (valores que o adversário não tinha ao comprar/passar). */
+  function chooseMove(st, player, level, r) {
+    const moves = legalMoves(st, player);
+    if (!moves.length) return null;
+    if (level === 'easy') return moves[Math.floor(r() * moves.length)];
+    const hand = st.hands[player], opp = other(player);
+    let best = null, bs = -1e9;
+    for (const m of moves) {
+      const t = hand.find((x) => x.id === m.tileId);
+      const rest = hand.filter((x) => x.id !== t.id);
+      let L = st.board.length ? st.board[0].l : m.l;
+      let R = st.board.length ? st.board[st.board.length - 1].r : m.r;
+      if (m.side === 'L') L = m.l; else if (m.side === 'R') R = m.r; else { L = m.l; R = m.r; }
+      const cnt = (v) => rest.filter((x) => x.a === v || x.b === v).length;
+      let s = tileSum(t) + (isDouble(t) ? 2 : 0);
+      s += (cnt(L) + cnt(R)) * (level === 'hard' ? 2.2 : 1);
+      if (m.wild) s -= 6;
+      if (level === 'hard') {
+        const miss = st.missing[opp] || [];
+        if (miss.includes(L)) s += 3;
+        if (miss.includes(R)) s += 3;
+        if (cnt(L) + cnt(R) === 0) s -= 3;
+        const oppSize = st.hands[opp].length;
+        if (oppSize <= 2) s += tileSum(t) * 0.5;
+      }
+      if (rest.length === 0) s += 100;
+      s += r() * 0.5;
+      if (s > bs) { bs = s; best = m; }
+    }
+    return best;
+  }
+
+  function aiPower(st, level, r) {
+    const me = 'c';
+    if (!st.powersOn || st.powerUsedThisTurn || st.frozen[me] > 0) return null;
+    const chance = { easy: 0.15, medium: 0.4, hard: 0.65 }[level] || 0.3;
+    if (r() > chance) return null;
+    const noMoves = legalMoves(st, me).length === 0;
+    const cands = [];
+    const add = (id, w, arg) => { if (!powerError(st, me, id, arg)) cands.push({ id, w, arg }); };
+    add('raio', 3); add('congelar', 2); add('escudo', 2);
+    if (st.energy[me] <= 5) add('duplicador', 2);
+    if (noMoves) {
+      add('coringa', 4);
+      const worst = st.hands[me].slice().sort((a, b) => tileSum(b) - tileSum(a))[0];
+      if (worst) add('portal', 2, worst.id);
+    }
+    if (!cands.length) return null;
+    const total = cands.reduce((s, c) => s + c.w, 0);
+    let x = r() * total;
+    for (const c of cands) { x -= c.w; if (x <= 0) return { type: 'power', player: me, power: c.id, arg: c.arg }; }
+    return null;
+  }
+
+  function aiNext(st, level, r) {
+    r = r || Math.random;
+    const pw = aiPower(st, level, r);
+    if (pw) return pw;
+    const mv = chooseMove(st, 'c', level, r);
+    if (mv) return { type: 'play', player: 'c', tileId: mv.tileId, side: mv.side, flip: !!mv.flip };
+    if (st.stock.length) return { type: 'draw', player: 'c' };
+    return { type: 'pass', player: 'c' };
+  }
+
+  return {
+    PIPS, rotatePips, POWERS, POWER_IDS, makeDeck, newGame, apply, legalMoves, playableTileIds,
+    movesForTile, endsOf, powerError, chooseMove, aiNext, handSum, isDouble, tileSum, parseTile,
+    other, rng, shuffle, clone,
+  };
+});
+
+;
+/* AMELIE NEON DOMINÓ — Conteúdo e progressão: casos, missões, recompensas, perfil. */
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.Content = factory();
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  const KEY = 'amelie-neon-domino-v1';
+  const pt = (id) => { const [a, b] = id.split('-').map(Number); return { id, a, b }; };
+
+  /* ---------------- Casos da Agência de Detetives ---------------- */
+  const CASES = [
+    { id: 'c1', type: 'missing', diff: 1, title: 'O Portal Apagado', npc: 'Nina, a robô-farol',
+      intro: 'O portal da praça apagou! Falta uma peça no meio da ponte de luz. Qual peça liga as duas pontas?',
+      left: '1-4', right: '3-6', options: ['3-4', '4-4', '3-3', '1-3'],
+      hints: ['Olhe só para as pontas que ficam coladas na peça escondida.', 'A ponta da esquerda mostra 4 pontos e a da direita mostra 3 pontos.', 'A peça escondida precisa ter 4 pontos de um lado e 3 do outro.'],
+      reward: { coins: 30, crystals: 1, xp: 40 } },
+    { id: 'c2', type: 'missing', diff: 1, title: 'A Ponte Sem Meio', npc: 'Capitão Fagulha',
+      intro: 'A ponte de energia quebrou no meio. Encontre a peça que fecha o caminho.',
+      left: '0-2', right: '5-5', options: ['2-5', '2-2', '5-5', '0-5'],
+      hints: ['Procure a peça que encaixa nos dois lados ao mesmo tempo.', 'Um lado precisa de 2 pontos e o outro de 5 pontos.', 'É a peça 2 e 5. Ela não é dupla.'],
+      reward: { coins: 30, crystals: 1, xp: 40 } },
+    { id: 'c3', type: 'missing', diff: 2, title: 'O Eco do Duplo', npc: 'Professora Lumi',
+      intro: 'Dois lados pedem o mesmo número. Que peça especial resolve o mistério?',
+      left: '6-1', right: '1-2', options: ['1-1', '1-6', '1-2', '0-1'],
+      hints: ['O que acontece quando os dois lados pedem o mesmo valor?', 'Os dois lados mostram 1 ponto.', 'Uma peça dupla resolve: 1 e 1.'],
+      reward: { coins: 40, crystals: 1, xp: 50 } },
+    { id: 'c4', type: 'code', diff: 2, title: 'O Cofre Secreto', npc: 'Nina, a robô-farol',
+      intro: 'O cofre abre com uma peça dupla cuja soma de pontos é 10. Qual é o código?',
+      rule: { double: true, sum: 10 }, options: ['0-0', '2-2', '4-6', '5-5', '1-3', '6-6'],
+      hints: ['Duplas têm os dois lados iguais.', 'Se os dois lados são iguais e a soma é 10, cada lado vale metade de 10.', 'Cada lado tem 5 pontos.'],
+      reward: { coins: 40, crystals: 1, xp: 50 } },
+    { id: 'c5', type: 'chain', diff: 2, title: 'A Trilha de Cristais', npc: 'Capitão Fagulha',
+      intro: 'Comece pelo número 3 e use TODAS as peças em uma fila, encaixando ponta com ponta.',
+      start: 3, tiles: ['1-6', '3-5', '1-1', '2-6', '1-5'], solution: ['3-5', '1-5', '1-1', '1-6', '2-6'],
+      hints: ['A primeira peça precisa ter um 3.', 'Depois do 3-5 a fila fica com 5 na ponta. Qual peça tem um 5?', 'Ordem: 3-5, 1-5, 1-1, 1-6 e 2-6.'],
+      reward: { coins: 50, crystals: 2, xp: 60 } },
+    { id: 'c6', type: 'missing', diff: 3, title: 'O Zero Misterioso', npc: 'Professora Lumi',
+      intro: 'Uma ponta mostra um zero! Que peça liga o vazio ao quatro?',
+      left: '6-0', right: '4-4', options: ['0-4', '4-4', '0-0', '4-6'],
+      hints: ['Zero é uma metade vazia, sem pontos.', 'Uma metade vazia de um lado e 4 pontos do outro.', 'A peça é 0 e 4.'],
+      reward: { coins: 50, crystals: 2, xp: 60 } },
+    { id: 'c7', type: 'code', diff: 3, title: 'A Chave Dourada', npc: 'Capitão Fagulha',
+      intro: 'A chave é a peça que soma 9 e tem um 3 em um dos lados.',
+      rule: { sum: 9, has: 3 }, options: ['3-6', '4-5', '3-3', '2-6', '5-5', '1-3'],
+      hints: ['Procure primeiro as peças que têm um lado com 3 pontos.', 'Some o 3 com o outro lado: precisa dar 9.', 'O outro lado tem 6 pontos.'],
+      reward: { coins: 60, crystals: 2, xp: 70 } },
+    { id: 'c8', type: 'chain', diff: 3, title: 'O Grande Circuito', npc: 'Professora Lumi',
+      intro: 'Comece no 6 e use as 6 peças em uma fila contínua. Cada encaixe tem que combinar.',
+      start: 6, tiles: ['4-5', '2-0', '6-2', '4-4', '6-6', '0-4'], solution: ['6-6', '6-2', '2-0', '0-4', '4-4', '4-5'],
+      hints: ['Tem uma dupla de 6 que pode vir primeiro.', 'Depois do 6 vem o 2, depois o 0.', 'Ordem: 6-6, 6-2, 2-0, 0-4, 4-4 e 4-5.'],
+      reward: { coins: 70, crystals: 3, xp: 80 } },
+    { id: 'm1', type: 'match', diff: 2, title: 'O Caso dos Duplos', npc: 'Capitão Fagulha', mode: 'classic', level: 'easy',
+      intro: 'Vença uma partida clássica jogando pelo menos 2 peças duplas.',
+      objective: { win: true, doubles: 2 },
+      hints: ['Duplas têm os dois lados iguais.', 'Guarde as duplas para jogar quando a ponta combinar.', 'Se tiver duplas, jogue-as quando puder.'],
+      reward: { coins: 50, crystals: 2, xp: 60 } },
+    { id: 'm2', type: 'match', diff: 3, title: 'O Caso da Tempestade', npc: 'Nina, a robô-farol', mode: 'chaos', level: 'easy',
+      intro: 'Na arena Caos Neon, vença usando pelo menos 2 poderes.',
+      objective: { win: true, powers: 2 },
+      hints: ['Poderes gastam energia.', 'Você ganha 1 de energia a cada turno.', 'Escudo e Visão são baratos.'],
+      reward: { coins: 60, crystals: 2, xp: 70 } },
+  ];
+
+  function matchesRule(t, rule) {
+    if (rule.double && t.a !== t.b) return false;
+    if (rule.sum != null && t.a + t.b !== rule.sum) return false;
+    if (rule.has != null && t.a !== rule.has && t.b !== rule.has) return false;
+    return true;
+  }
+  function checkCase(c, answer) {
+    if (c.type === 'missing') {
+      const t = pt(answer);
+      const L = pt(c.left).b, R = pt(c.right).a;
+      return (t.a === L && t.b === R) || (t.b === L && t.a === R);
+    }
+    if (c.type === 'code') return matchesRule(pt(answer), c.rule);
+    if (c.type === 'chain') {
+      if (!Array.isArray(answer) || answer.length !== c.tiles.length) return false;
+      if (new Set(answer).size !== answer.length) return false;
+      if (!answer.every((id) => c.tiles.includes(id))) return false;
+      let cur = c.start;
+      for (const id of answer) {
+        const t = pt(id);
+        if (t.a === cur) cur = t.b; else if (t.b === cur) cur = t.a; else return false;
+      }
+      return true;
+    }
+    return false;
+  }
+  function checkMatchObjective(c, stats, won) {
+    const o = c.objective;
+    if (o.win && !won) return false;
+    if (o.doubles != null && stats.doubles < o.doubles) return false;
+    if (o.powers != null && stats.powers < o.powers) return false;
+    return true;
+  }
+  // Quantas opções do caso são corretas (deve ser exatamente 1 em missing/code)
+  function correctOptions(c) { return (c.options || []).filter((o) => checkCase(c, o)); }
+
+  /* ---------------- Missões ---------------- */
+  const QUESTS = [
+    { id: 'q-win', cat: 'Missões diárias', text: 'Vença 1 partida', stat: 'wins', target: 1, reward: { coins: 20, xp: 20 } },
+    { id: 'q-play', cat: 'Objetivos de dominó', text: 'Jogue 10 peças', stat: 'tilesPlayed', target: 10, reward: { coins: 15, xp: 15 } },
+    { id: 'q-double', cat: 'Objetivos de dominó', text: 'Jogue 2 peças duplas', stat: 'doubles', target: 2, reward: { coins: 15, xp: 15 } },
+    { id: 'q-power', cat: 'Missões de aventura', text: 'Use 2 poderes no Caos Neon', stat: 'powers', target: 2, reward: { coins: 25, crystals: 1, xp: 20 } },
+    { id: 'q-case', cat: 'Desafios de lógica', text: 'Resolva 1 caso da Agência', stat: 'cases', target: 1, reward: { coins: 25, crystals: 1, xp: 25 } },
+  ];
+
+  /* ---------------- Recompensas ---------------- */
+  const REWARDS = [
+    { id: 'skin-marfim', kind: 'skin', name: 'Marfim Clássico', desc: 'Peças de marfim polido.', cond: { type: 'always' } },
+    { id: 'skin-cristal', kind: 'skin', name: 'Cristal Azul', desc: 'Peças de cristal gelado.', cond: { type: 'wins', n: 2 } },
+    { id: 'skin-rosa', kind: 'skin', name: 'Quartzo Rosa', desc: 'Peças de quartzo rosado.', cond: { type: 'cases', n: 2 } },
+    { id: 'skin-ouro', kind: 'skin', name: 'Ouro Real', desc: 'Peças douradas do Clube VIP.', vip: true, cond: { type: 'vip' } },
+    { id: 'fx-raio', kind: 'fx', name: 'Raio Cósmico', desc: 'Um raio cruza a mesa ao jogar.', cond: { type: 'always' } },
+    { id: 'fx-estrelas', kind: 'fx', name: 'Chuva de Estrelas', desc: 'Estrelas caem ao jogar.', cond: { type: 'cases', n: 1 } },
+    { id: 'fx-portal', kind: 'fx', name: 'Portal Dourado', desc: 'Um portal dourado se abre ao jogar.', vip: true, cond: { type: 'vipWins', n: 1 } },
+    { id: 'table-neon', kind: 'table', name: 'Arena Neon', desc: 'A mesa azul-ciano padrão.', cond: { type: 'always' } },
+    { id: 'table-aurora', kind: 'table', name: 'Arena Aurora', desc: 'Mesa roxa e rosa.', cond: { type: 'level', n: 3 } },
+    { id: 'table-vip', kind: 'table', name: 'Arena Imperial', desc: 'Mesa dourada do Clube VIP.', vip: true, cond: { type: 'vip' } },
+    { id: 'av-robo', kind: 'avatar', name: 'Robô', icon: '🤖', desc: 'Avatar inicial.', cond: { type: 'always' } },
+    { id: 'av-lupa', kind: 'avatar', name: 'Detetive', icon: '🔍', desc: 'Resolva 1 caso.', cond: { type: 'cases', n: 1 } },
+    { id: 'av-raio', kind: 'avatar', name: 'Faísca', icon: '⚡', desc: 'Use 5 poderes.', cond: { type: 'powers', n: 5 } },
+    { id: 'av-coroa', kind: 'avatar', name: 'Realeza', icon: '👑', desc: 'Avatar do Clube VIP.', vip: true, cond: { type: 'vip' } },
+    { id: 'title-aprendiz', kind: 'title', name: 'Aprendiz Neon', desc: 'Conclua o tutorial.', cond: { type: 'tutorial', n: 1 } },
+    { id: 'title-detetive', kind: 'title', name: 'Detetive Júnior', desc: 'Resolva 3 casos.', cond: { type: 'cases', n: 3 } },
+    { id: 'title-campeao', kind: 'title', name: 'Campeão de Mesa', desc: 'Vença 5 partidas.', cond: { type: 'wins', n: 5 } },
+    { id: 'title-mestre', kind: 'title', name: 'Mestre do Reino', desc: 'Vença um Desafio VIP.', vip: true, cond: { type: 'vipWins', n: 1 } },
+  ];
+  const KINDS = { skin: 'Desenhos de peças', fx: 'Efeitos de jogada', table: 'Arenas', avatar: 'Avatares', title: 'Títulos' };
+  const VIP_REQ = { wins: 3, cases: 3 };
+
+  /* ---------------- Perfil ---------------- */
+  function defaultProfile() {
+    return {
+      v: 1, coins: 0, crystals: 0, xp: 0,
+      inventory: ['skin-marfim', 'fx-raio', 'table-neon', 'av-robo'],
+      equipped: { skin: 'skin-marfim', fx: 'fx-raio', table: 'table-neon', avatar: 'av-robo', title: null },
+      stats: { games: 0, wins: 0, losses: 0, draws: 0, tilesPlayed: 0, doubles: 0, powers: 0, cases: 0, vipWins: 0, tutorial: 0 },
+      solved: [], daily: { day: '', progress: {}, claimed: {} }, seenPowers: [],
+      settings: { music: true, sfx: true, volMusic: 0.6, volSfx: 0.85, audioV: 2, reduceMotion: false, highContrast: false, vibrate: true, quickPlay: null },
+    };
+  }
+  function merge(d, s) {
+    if (s == null || typeof s !== 'object' || Array.isArray(d)) return s === undefined ? d : s;
+    const o = Array.isArray(d) ? d : Object.assign({}, d);
+    for (const k in s) o[k] = (d && typeof d[k] === 'object' && !Array.isArray(d[k]) && d[k] !== null) ? merge(d[k], s[k]) : s[k];
+    return o;
+  }
+  function loadProfile(storage) {
+    try {
+      const raw = storage && storage.getItem(KEY);
+      if (!raw) return defaultProfile();
+      const p = merge(defaultProfile(), JSON.parse(raw));
+      if (!Array.isArray(p.inventory)) p.inventory = defaultProfile().inventory;
+      // migração do áudio: o mix antigo era baixo demais; respeita quem já silenciou de propósito
+      if (p.settings.audioV !== 2) { p.settings.audioV = 2; p.settings.volMusic = 0.6; p.settings.volSfx = 0.85; }
+      return p;
+    } catch (e) { return defaultProfile(); }
+  }
+  function saveProfile(storage, p) {
+    try { storage.setItem(KEY, JSON.stringify(p)); return true; } catch (e) { return false; }
+  }
+  const pad = (n) => (n < 10 ? '0' : '') + n;
+  function todayKey(d) { d = d || new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function ensureDaily(p, day) { day = day || todayKey(); if (p.daily.day !== day) p.daily = { day, progress: {}, claimed: {} }; }
+  function bump(p, stat, n, day) {
+    n = n == null ? 1 : n; ensureDaily(p, day);
+    p.stats[stat] = (p.stats[stat] || 0) + n;
+    p.daily.progress[stat] = (p.daily.progress[stat] || 0) + n;
+  }
+  const levelOf = (p) => Math.floor(p.xp / 100) + 1;
+  const levelProgress = (p) => p.xp % 100;
+  function addXp(p, n) { const before = levelOf(p); p.xp += n; return levelOf(p) > before; }
+  function isVipUnlocked(p) { return p.stats.wins >= VIP_REQ.wins && p.stats.cases >= VIP_REQ.cases; }
+
+  function rewardUnlocked(p, rw) {
+    if (rw.vip && !isVipUnlocked(p)) return false;
+    const c = rw.cond, s = p.stats;
+    switch (c.type) {
+      case 'always': return true;
+      case 'vip': return isVipUnlocked(p);
+      case 'wins': return s.wins >= c.n;
+      case 'cases': return s.cases >= c.n;
+      case 'powers': return s.powers >= c.n;
+      case 'level': return levelOf(p) >= c.n;
+      case 'tutorial': return s.tutorial >= c.n;
+      case 'vipWins': return s.vipWins >= c.n;
+    }
+    return false;
+  }
+  function condText(rw) {
+    const c = rw.cond, pre = rw.vip ? 'Clube VIP + ' : '';
+    switch (c.type) {
+      case 'always': return 'Já incluído';
+      case 'vip': return 'Desbloqueie o Clube VIP';
+      case 'wins': return pre + 'Vença ' + c.n + ' partidas';
+      case 'cases': return pre + 'Resolva ' + c.n + ' casos';
+      case 'powers': return pre + 'Use ' + c.n + ' poderes';
+      case 'level': return pre + 'Chegue ao nível ' + c.n;
+      case 'tutorial': return 'Conclua o tutorial';
+      case 'vipWins': return pre + 'Vença ' + c.n + ' Desafio VIP';
+    }
+    return '';
+  }
+  function syncRewards(p) {
+    const fresh = [];
+    for (const rw of REWARDS) if (!p.inventory.includes(rw.id) && rewardUnlocked(p, rw)) { p.inventory.push(rw.id); fresh.push(rw); }
+    return fresh;
+  }
+  function equip(p, id) {
+    const rw = REWARDS.find((r) => r.id === id);
+    if (!rw || !p.inventory.includes(id)) return false;
+    p.equipped[rw.kind] = id; return true;
+  }
+  function claimQuest(p, qid, day) {
+    const q = QUESTS.find((x) => x.id === qid);
+    if (!q) return { ok: false };
+    ensureDaily(p, day);
+    if (p.daily.claimed[qid]) return { ok: false, why: 'claimed' };
+    if ((p.daily.progress[q.stat] || 0) < q.target) return { ok: false, why: 'incomplete' };
+    p.daily.claimed[qid] = true;
+    p.coins += q.reward.coins || 0; p.crystals += q.reward.crystals || 0;
+    const lvl = addXp(p, q.reward.xp || 0);
+    return { ok: true, q, levelUp: lvl };
+  }
+  // Concede a recompensa do caso APENAS na primeira solução verificada.
+  function solveCase(p, c, day) {
+    if (p.solved.includes(c.id)) return { first: false };
+    p.solved.push(c.id);
+    bump(p, 'cases', 1, day);
+    p.coins += c.reward.coins; p.crystals += c.reward.crystals;
+    const lvl = addXp(p, c.reward.xp);
+    return { first: true, reward: c.reward, levelUp: lvl };
+  }
+  // Resultado de partida -> estatísticas e recompensas.
+  function recordMatch(p, o, day) {
+    // o: { won, draw, vip, tilesPlayed, doubles, powers, training }
+    if (o.training) return { coins: 0, xp: 0, levelUp: false };
+    bump(p, 'games', 1, day);
+    if (o.won) bump(p, 'wins', 1, day); else if (o.draw) bump(p, 'draws', 1, day); else bump(p, 'losses', 1, day);
+    bump(p, 'tilesPlayed', o.tilesPlayed, day); bump(p, 'doubles', o.doubles, day); bump(p, 'powers', o.powers, day);
+    let coins = o.won ? 15 : 5, xp = o.won ? 30 : 10;
+    if (o.vip && o.won) { bump(p, 'vipWins', 1, day); coins += 40; xp += 40; }
+    p.coins += coins;
+    const levelUp = addXp(p, xp);
+    return { coins, xp, levelUp };
+  }
+
+  return {
+    KEY, CASES, QUESTS, REWARDS, KINDS, VIP_REQ, checkCase, checkMatchObjective, correctOptions, matchesRule,
+    defaultProfile, loadProfile, saveProfile, todayKey, ensureDaily, bump, levelOf, levelProgress, addXp,
+    isVipUnlocked, rewardUnlocked, condText, syncRewards, equip, claimQuest, solveCase, recordMatch,
+  };
+});
+
+;
+/* AMELIE NEON DOMINÓ — Identidade sonora (100% sintetizada com WebAudio, sem arquivos).
+   - Trilha synthwave suave em loop (pad + baixo + arpejo com eco + batida leve no jogo).
+   - Efeitos por evento e um efeito próprio para cada poder.
+   - Frequências pensadas para alto-falante de celular (sem depender de graves).
+   - Só inicia após um toque do usuário; música e efeitos têm controles separados. */
+(function (root) {
+  'use strict';
+  const S = { music: true, sfx: true, volMusic: 0.6, volSfx: 0.85 };
+  let ctx = null, B = null, timer = null, step = 0, nextT = 0, mood = 'menu', silentEl = null, duckTimer = null;
+  const BPM = 92, STEP = 60 / BPM / 4, BAR = STEP * 16;
+  // Lá menor, progressão Am - F - C - G (clima de ficção científica, acolhedor)
+  const CHORDS = [[220, 261.63, 329.63], [174.61, 220, 261.63], [261.63, 329.63, 392], [196, 246.94, 293.66]];
+  const ROOTS = [110, 87.31, 130.81, 98];
+  const ARP = [0, 1, 2, 1, 2, 1, 0, 1];
+  const SPARK = [880, 1046.5, 1318.5, 1568, 1174.7];
+
+  /* ---------- Construção do grafo de áudio ---------- */
+  function build(c) {
+    const master = c.createGain(); master.gain.value = 0.9;
+    const comp = c.createDynamicsCompressor();
+    comp.threshold.value = -16; comp.knee.value = 20; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.22;
+    master.connect(comp); comp.connect(c.destination);
+    const music = c.createGain(), sfx = c.createGain();
+    music.connect(master); sfx.connect(master);
+    // eco "neon" compartilhado (1/8 de tempo, escurece a cada repetição)
+    const dl = c.createDelay(1); dl.delayTime.value = 60 / BPM / 2;
+    const fb = c.createGain(); fb.gain.value = 0.36;
+    const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2600;
+    const wet = c.createGain(); wet.gain.value = 0.55;
+    dl.connect(lp); lp.connect(fb); fb.connect(dl); lp.connect(wet); wet.connect(master);
+    const send = c.createGain(); send.gain.value = 1; send.connect(dl);
+    const n = Math.floor(c.sampleRate), nb = c.createBuffer(1, n, c.sampleRate), d = nb.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    return { c, master, comp, music, sfx, send, noise: nb };
+  }
+
+  /* ---------- Instrumentos básicos ---------- */
+  function tone(b, o) {
+    const c = b.c, t = o.t, dur = o.dur, vol = o.vol == null ? 0.3 : o.vol, a = o.a || 0.005, r = o.r || 0.08;
+    const osc = c.createOscillator(); osc.type = o.type || 'sine';
+    osc.frequency.setValueAtTime(o.f, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + (o.slideT || dur));
+    if (o.detune) osc.detune.value = o.detune;
+    let node = osc;
+    if (o.vib) {
+      const l = c.createOscillator(), lg = c.createGain(); l.frequency.value = o.vib.rate; lg.gain.value = o.vib.depth;
+      l.connect(lg); lg.connect(osc.frequency); l.start(t); l.stop(t + dur + r + 0.1);
+    }
+    if (o.lp) {
+      const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(o.lp, t);
+      if (o.lpTo) f.frequency.exponentialRampToValueAtTime(o.lpTo, t + dur);
+      node.connect(f); node = f;
+    }
+    const g = c.createGain(); let end;
+    g.gain.setValueAtTime(0.0001, t);
+    if (o.hold) {
+      g.gain.linearRampToValueAtTime(vol, t + a); g.gain.setValueAtTime(vol, t + dur);
+      g.gain.linearRampToValueAtTime(0.0001, t + dur + r); end = t + dur + r;
+    } else {
+      g.gain.exponentialRampToValueAtTime(vol, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); end = t + dur;
+    }
+    node.connect(g); g.connect(o.bus || b.sfx);
+    if (o.send) { const s = c.createGain(); s.gain.value = o.send; g.connect(s); s.connect(b.send); }
+    osc.start(t); osc.stop(end + 0.05);
+  }
+  // Sino FM (timbre de vidro/cristal)
+  function bell(b, f, t, dur, vol, o) {
+    o = o || {}; const c = b.c;
+    const car = c.createOscillator(), mod = c.createOscillator(), mg = c.createGain(), g = c.createGain();
+    car.frequency.value = f; mod.frequency.value = f * 3.5;
+    mg.gain.setValueAtTime(f * 1.5, t); mg.gain.exponentialRampToValueAtTime(1, t + dur * 0.8);
+    mod.connect(mg); mg.connect(car.frequency);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    car.connect(g); g.connect(o.bus || b.sfx);
+    if (o.send) { const s = c.createGain(); s.gain.value = o.send; g.connect(s); s.connect(b.send); }
+    car.start(t); mod.start(t); car.stop(t + dur + 0.05); mod.stop(t + dur + 0.05);
+  }
+  function noise(b, t, dur, vol, o) {
+    o = o || {}; const c = b.c;
+    const src = c.createBufferSource(); src.buffer = b.noise; src.loop = true;
+    const f = c.createBiquadFilter(); f.type = o.type || 'bandpass'; f.frequency.setValueAtTime(o.f || 2000, t);
+    if (o.to) f.frequency.exponentialRampToValueAtTime(o.to, t + dur); f.Q.value = o.q || 1;
+    const g = c.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(f); f.connect(g); g.connect(o.bus || b.sfx);
+    if (o.send) { const s = c.createGain(); s.gain.value = o.send; g.connect(s); s.connect(b.send); }
+    src.start(t, Math.random() * 0.5); src.stop(t + dur + 0.05);
+  }
+
+  /* ---------- Efeitos ---------- */
+  const SFX = {
+    ui: (b, t) => { tone(b, { f: 900, t, dur: 0.05, type: 'triangle', vol: 0.2, a: 0.002 }); },
+    select: (b, t) => {
+      tone(b, { f: 880, t, dur: 0.1, type: 'triangle', vol: 0.4, a: 0.002, send: 0.2 });
+      tone(b, { f: 1320, t: t + 0.045, dur: 0.12, type: 'sine', vol: 0.3, a: 0.002, send: 0.3 });
+    },
+    place: (b, t) => { // "toc" de dominó + brilho neon
+      noise(b, t, 0.045, 0.7, { f: 2200, q: 0.9 });
+      tone(b, { f: 620, to: 240, t, dur: 0.13, type: 'sine', vol: 0.85, a: 0.001 });
+      tone(b, { f: 1240, to: 480, t, dur: 0.07, type: 'triangle', vol: 0.35, a: 0.001 });
+      tone(b, { f: 2600, to: 1300, t: t + 0.02, dur: 0.08, type: 'sine', vol: 0.16, a: 0.002, send: 0.3 });
+    },
+    bad: (b, t) => { // suave, nada assustador
+      tone(b, { f: 330, t, dur: 0.13, type: 'sawtooth', lp: 1100, vol: 0.26 });
+      tone(b, { f: 247, t: t + 0.11, dur: 0.2, type: 'sawtooth', lp: 900, vol: 0.26 });
+    },
+    draw: (b, t) => {
+      noise(b, t, 0.17, 0.5, { f: 700, to: 2800, q: 2 });
+      tone(b, { f: 990, t: t + 0.1, dur: 0.1, type: 'triangle', vol: 0.3 });
+    },
+    turn: (b, t) => { bell(b, 1175, t, 0.4, 0.2, { send: 0.3 }); },
+    power: (b, t) => { SFX['power:raio'](b, t); },
+    'power:raio': (b, t) => {
+      tone(b, { f: 150, to: 1500, t, dur: 0.24, type: 'sawtooth', lp: 4200, vol: 0.32 });
+      [0, 0.05, 0.11, 0.2].forEach((d) => noise(b, t + d, 0.05, 0.55, { type: 'highpass', f: 3200, q: 0.7 }));
+      tone(b, { f: 180, to: 70, t: t + 0.08, dur: 0.5, type: 'sine', vol: 0.6 });
+      tone(b, { f: 360, to: 140, t: t + 0.08, dur: 0.4, type: 'triangle', vol: 0.3 });
+      bell(b, 2093, t + 0.16, 0.5, 0.2, { send: 0.4 });
+    },
+    'power:escudo': (b, t) => {
+      [784, 1175, 1568].forEach((f, i) => bell(b, f, t + i * 0.07, 0.7, 0.3, { send: 0.45 }));
+      noise(b, t, 0.45, 0.12, { type: 'highpass', f: 5000, to: 9000, q: 0.5, send: 0.3 });
+    },
+    'power:portal': (b, t) => {
+      tone(b, { f: 220, to: 1100, t, dur: 0.6, type: 'sine', vol: 0.42, vib: { rate: 7, depth: 30 }, send: 0.4 });
+      tone(b, { f: 330, to: 1650, t, dur: 0.6, type: 'triangle', vol: 0.2, vib: { rate: 5, depth: 40 }, send: 0.4 });
+      tone(b, { f: 1100, to: 330, t: t + 0.6, dur: 0.5, type: 'triangle', vol: 0.3, send: 0.4 });
+      bell(b, 1568, t + 0.6, 0.8, 0.2, { send: 0.5 });
+    },
+    'power:congelar': (b, t) => {
+      [3136, 2637, 2093, 1568].forEach((f, i) => bell(b, f, t + i * 0.07, 0.55, 0.22, { send: 0.5 }));
+      noise(b, t, 0.3, 0.12, { type: 'highpass', f: 5500, q: 0.5 });
+    },
+    'power:visao': (b, t) => {
+      bell(b, 1760, t, 0.9, 0.34, { send: 0.6 });
+      tone(b, { f: 1320, t: t + 0.25, dur: 0.1, type: 'triangle', vol: 0.26 });
+      tone(b, { f: 1760, t: t + 0.36, dur: 0.12, type: 'triangle', vol: 0.26, send: 0.3 });
+    },
+    'power:coringa': (b, t) => {
+      [523, 659, 784, 988, 1175, 1568, 1976].forEach((f, i) => bell(b, f, t + i * 0.06, 0.45, 0.24, { send: 0.4 }));
+      noise(b, t + 0.2, 0.4, 0.1, { type: 'highpass', f: 6000, q: 0.5, send: 0.3 });
+    },
+    'power:duplicador': (b, t) => {
+      [440, 554, 659, 880].forEach((f, i) => tone(b, { f, t: t + i * 0.07, dur: 0.1, type: 'square', lp: 3500, vol: 0.2 }));
+      bell(b, 1760, t + 0.3, 0.4, 0.2, { send: 0.3 });
+    },
+    mystery: (b, t) => { [659, 784, 988, 1319].forEach((f, i) => bell(b, f, t + i * 0.12, 0.8, 0.34, { send: 0.5 })); },
+    reward: (b, t) => {
+      [784, 988, 1175, 1568, 1976, 2349].forEach((f, i) => bell(b, f, t + i * 0.07, 0.7, 0.28, { send: 0.5 }));
+      noise(b, t + 0.1, 0.6, 0.1, { type: 'highpass', f: 6500, q: 0.5, send: 0.3 });
+    },
+    level: (b, t) => {
+      [523, 659, 784, 1047].forEach((f, i) => tone(b, { f, t: t + i * 0.08, dur: 0.14, type: 'square', lp: 3500, vol: 0.18 }));
+      bell(b, 2093, t + 0.34, 0.6, 0.24, { send: 0.4 });
+    },
+    win: (b, t) => {
+      [523, 659, 784, 1047, 1319, 1568].forEach((f, i) => { bell(b, f, t + i * 0.11, 0.9, 0.3, { send: 0.45 }); tone(b, { f, t: t + i * 0.11, dur: 0.2, type: 'triangle', vol: 0.18 }); });
+      [523, 659, 784].forEach((f) => tone(b, { f, t: t + 0.7, dur: 1.1, type: 'sawtooth', lp: 2400, vol: 0.09, hold: true, a: 0.05, r: 0.6, send: 0.3 }));
+      bell(b, 2093, t + 0.9, 1.2, 0.25, { send: 0.6 });
+    },
+    lose: (b, t) => { [392, 349, 311, 262].forEach((f, i) => tone(b, { f, t: t + i * 0.2, dur: 0.45, type: 'triangle', lp: 1600, vol: 0.28, send: 0.3 })); },
+  };
+
+  /* ---------- Música ---------- */
+  function musicStep(b, n, t, m) {
+    const bar = Math.floor(n / 16) % 4, s = n % 16, ch = CHORDS[bar], M = b.music;
+    if (s === 0) { // pad (sawtooth levemente desafinado, filtro suave)
+      ch.forEach((f) => [-9, 9].forEach((d) => tone(b, { f, t, dur: BAR - 0.3, type: 'sawtooth', detune: d, lp: 1100, a: 0.55, r: 0.9, hold: true, vol: 0.045, bus: M, send: 0.12 })));
+    }
+    if (s === 0 || s === 6 || s === 10) { // baixo (triângulo + oitava para soar em celular)
+      tone(b, { f: ROOTS[bar], t, dur: STEP * 3, type: 'triangle', vol: 0.34, a: 0.01, bus: M });
+      tone(b, { f: ROOTS[bar] * 2, t, dur: STEP * 2.5, type: 'sine', vol: 0.16, a: 0.01, bus: M });
+    }
+    if (s % 2 === 0) { // arpejo (pluck brilhante com eco)
+      const k = s / 2, f = ch[ARP[k]] * 2, acc = k === 0 ? 1.3 : 1;
+      tone(b, { f, t, dur: 0.24, type: 'triangle', lp: 3200, lpTo: 900, vol: (m === 'game' ? 0.1 : 0.13) * acc, a: 0.003, bus: M, send: 0.5 });
+      tone(b, { f: f * 2, t, dur: 0.1, type: 'sine', vol: 0.03 * acc, a: 0.002, bus: M, send: 0.3 });
+    }
+    if (s === 12 && bar % 2 === 1) bell(b, SPARK[(n * 7 >> 4) % SPARK.length], t, 1.6, m === 'game' ? 0.07 : 0.1, { bus: M, send: 0.6 });
+    if (m === 'game') { // pulso leve para dar ritmo à partida
+      if (s === 0 || s === 8) { tone(b, { f: 150, to: 55, t, dur: 0.14, type: 'sine', vol: 0.34, bus: M }); noise(b, t, 0.02, 0.1, { f: 2000, bus: M }); }
+      if (s === 4 || s === 12) noise(b, t, 0.09, 0.07, { f: 1800, q: 0.8, bus: M });
+      if (s % 4 === 2) noise(b, t, 0.03, 0.05, { type: 'highpass', f: 7500, bus: M });
+    }
+  }
+
+  /* ---------- Controle ---------- */
+  function applyGains(instant) {
+    if (!B) return;
+    const t = B.c.currentTime, k = instant ? 0 : 0.05;
+    B.music.gain.setTargetAtTime(S.music ? S.volMusic * 1.15 : 0, t, k || 0.001);
+    B.sfx.gain.setTargetAtTime(S.sfx ? S.volSfx : 0, t, k || 0.001);
+  }
+  function ensure() {
+    if (ctx) return ctx;
+    const AC = root.AudioContext || root.webkitAudioContext; if (!AC) return null;
+    try { ctx = new AC(); B = build(ctx); applyGains(true); } catch (e) { ctx = null; B = null; }
+    return ctx;
+  }
+  // iOS: sem isto o Safari silencia o WebAudio com a chave de silencioso ligada.
+  function iosUnmute() {
+    try { if (root.navigator && root.navigator.audioSession) root.navigator.audioSession.type = 'playback'; } catch (e) { /* ignora */ }
+    try {
+      if (silentEl || !root.document) return;
+      const n = 800, buf = new Uint8Array(44 + n * 2), dv = new DataView(buf.buffer);
+      const w = (o, s) => { for (let i = 0; i < s.length; i++) dv.setUint8(o + i, s.charCodeAt(i)); };
+      w(0, 'RIFF'); dv.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+      dv.setUint32(24, 8000, true); dv.setUint32(28, 16000, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); w(36, 'data'); dv.setUint32(40, n * 2, true);
+      let bin = ''; for (let i = 0; i < buf.length; i++) bin += String.fromCharCode(buf[i]);
+      silentEl = root.document.createElement('audio'); silentEl.src = 'data:audio/wav;base64,' + root.btoa(bin); silentEl.loop = true; silentEl.setAttribute('playsinline', ''); silentEl.volume = 0.01;
+      const p = silentEl.play(); if (p && p.catch) p.catch(() => {});
+    } catch (e) { /* ignora */ }
+  }
+  function tick() {
+    if (!ctx || !S.music || ctx.state !== 'running') return;
+    if (nextT < ctx.currentTime) nextT = ctx.currentTime + 0.06;
+    while (nextT < ctx.currentTime + 0.45) { musicStep(B, step, nextT, mood); nextT += STEP; step++; }
+  }
+  const AudioFX = {
+    configure(s) { Object.assign(S, s); applyGains(false); if (ctx) AudioFX.syncMusic(); },
+    unlock() {
+      const c = ensure(); if (!c) return; iosUnmute();
+      if (c.state === 'suspended') c.resume().then(AudioFX.syncMusic).catch(() => {}); else AudioFX.syncMusic();
+    },
+    syncMusic() {
+      if (!ctx) return;
+      if (S.music && !timer) { nextT = 0; timer = setInterval(tick, 110); tick(); }
+      if (!S.music && timer) { clearInterval(timer); timer = null; }
+    },
+    mood(m) { mood = m === 'game' ? 'game' : 'menu'; },
+    running() { return !!ctx && ctx.state === 'running'; },
+    suspend() { if (ctx && ctx.state === 'running') ctx.suspend().catch(() => {}); },
+    duck(sec) {
+      if (!B || !S.music) return; const t = ctx.currentTime, v = S.volMusic * 1.15;
+      B.music.gain.cancelScheduledValues(t); B.music.gain.setTargetAtTime(v * 0.25, t, 0.05);
+      clearTimeout(duckTimer); duckTimer = setTimeout(() => applyGains(false), sec * 1000);
+    },
+    play(name) {
+      if (!S.sfx || !ensure() || ctx.state !== 'running') return;
+      const f = SFX[name] || SFX[name.split(':')[0]]; if (!f) return;
+      try { f(B, ctx.currentTime + 0.01); if (name === 'win' || name === 'lose' || name === 'reward') AudioFX.duck(2.6); } catch (e) { /* ignora */ }
+    },
+    // ---- Ganchos de teste: renderiza offline (sem alto-falante) ----
+    _test: {
+      names: () => Object.keys(SFX),
+      async render(kind, name, sec, sr, vm, vs) {
+        const OC = root.OfflineAudioContext || root.webkitOfflineAudioContext, c = new OC(1, Math.floor(sec * sr), sr), b = build(c);
+        b.music.gain.value = (vm == null ? S.volMusic : vm) * 1.15; b.sfx.gain.value = vs == null ? S.volSfx : vs;
+        if (kind === 'sfx') SFX[name](b, 0.05);
+        else { for (let n = 0, t = 0.05; t < sec; n++, t += STEP) musicStep(b, n, t, name); }
+        const out = await c.startRendering(); return out.getChannelData(0);
+      },
+    },
+  };
+  root.AudioFX = AudioFX;
+})(typeof self !== 'undefined' ? self : this);
+
+;
+/* AMELIE NEON DOMINÓ — Interface (vanilla JS, sem dependências). */
+(function () {
+  'use strict';
+  const E = window.Engine, C = window.Content, A = window.AudioFX;
+  const app = document.getElementById('app');
+  const layer = document.getElementById('layer');
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  let storage = null;
+  try { storage = window.localStorage; storage.getItem('x'); } catch (e) { storage = null; }
+  const profile = C.loadProfile(storage);
+  let persistWarned = false;
+  let screen = 'home', G = null, D = null, tab = 'skin', pending = { mode: null };
+
+  function save() {
+    const ok = storage ? C.saveProfile(storage, profile) : false;
+    if (!ok && !persistWarned) { persistWarned = true; toast('Não consegui salvar o progresso neste navegador. Você pode jogar normalmente.'); }
+  }
+  const quick = () => (profile.settings.quickPlay == null ? !!(window.matchMedia && window.matchMedia('(pointer:coarse)').matches) : !!profile.settings.quickPlay);
+  function buzz(p) { try { if (profile.settings.vibrate !== false && navigator.vibrate) navigator.vibrate(p); } catch (e) { /* ignora */ } }
+  let wl = null;
+  function keepAwake() { try { if (navigator.wakeLock && !wl) navigator.wakeLock.request('screen').then((l) => { wl = l; l.addEventListener('release', () => { wl = null; }); }).catch(() => {}); } catch (e) { /* ignora */ } }
+  document.addEventListener('visibilitychange', () => { if (document.hidden) A.suspend(); else { if (screen === 'game') keepAwake(); A.unlock(); } });
+  const rm = () => profile.settings.reduceMotion || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ================= Peças (componente reutilizável) ================= */
+  const SKINS = { 'skin-marfim': 'marfim', 'skin-cristal': 'cristal', 'skin-rosa': 'rosa', 'skin-ouro': 'ouro' };
+  const skinName = () => SKINS[profile.equipped.skin] || 'marfim';
+  const POS = [11, 25, 39];
+
+  function pipsSVG(value, ox, oy, rotated) {
+    let list = E.PIPS[value];
+    if (rotated) list = E.rotatePips(list);
+    return list.map(([r, c]) => {
+      const cx = ox + POS[c], cy = oy + POS[r];
+      return `<circle cx="${cx}" cy="${cy}" r="4.6" fill="url(#g-pip)"/><circle cx="${cx - 1.4}" cy="${cy - 1.6}" r="1.2" fill="#fff" opacity=".28"/>`;
+    }).join('');
+  }
+  // vertical=true: peça em pé (50x100). false: deitada (100x50), pontos girados 90°.
+  function tileSVG(t, o) {
+    o = o || {};
+    const vertical = !!o.vertical, w = o.w || 60, skin = o.skin || skinName();
+    const W = vertical ? 50 : 100, H = vertical ? 100 : 50;
+    const h = w * H / W;
+    const dimAttr = o.fluid ? `style="width:calc(var(--bw,60) * ${o.fluid}px);height:auto"` : `width="${w}" height="${h}"`;
+    const line = vertical
+      ? '<line x1="8" y1="50" x2="42" y2="50" stroke="#7a6a45" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="51.6" x2="42" y2="51.6" stroke="#fff" opacity=".55" stroke-width="1"/><circle cx="25" cy="50" r="2.6" fill="#d5a93a" stroke="#7a5a10" stroke-width=".6"/>'
+      : '<line x1="50" y1="8" x2="50" y2="42" stroke="#7a6a45" stroke-width="2" stroke-linecap="round"/><line x1="51.6" y1="8" x2="51.6" y2="42" stroke="#fff" opacity=".55" stroke-width="1"/><circle cx="50" cy="25" r="2.6" fill="#d5a93a" stroke="#7a5a10" stroke-width=".6"/>';
+    const p1 = vertical ? pipsSVG(t.a, 0, 0, false) + pipsSVG(t.b, 0, 50, false) : pipsSVG(t.a, 0, 0, true) + pipsSVG(t.b, 50, 0, true);
+    return `<svg class="tile" viewBox="0 0 ${W} ${H}" ${dimAttr} role="img" aria-label="Peça ${t.a} e ${t.b}">`
+      + `<rect x="1.5" y="1.5" width="${W - 3}" height="${H - 3}" rx="8" fill="url(#g-skin-${skin})" stroke="#0b1b3a" stroke-width="1.6"/>`
+      + `<rect x="3.6" y="3.6" width="${W - 7.2}" height="${H - 7.2}" rx="6" fill="none" stroke="#fff" opacity=".6" stroke-width="1"/>`
+      + line + p1 + '</svg>';
+  }
+  function backSVG(vertical, w) {
+    const W = vertical ? 50 : 100, H = vertical ? 100 : 50;
+    return `<svg class="tile" viewBox="0 0 ${W} ${H}" width="${w}" height="${w * H / W}" aria-hidden="true"><rect x="1.5" y="1.5" width="${W - 3}" height="${H - 3}" rx="8" fill="url(#g-back)" stroke="#27e6ff" stroke-width="1.6"/><path d="M${W / 2 - 8} ${H / 2}h16M${W / 2} ${H / 2 - 8}v16" stroke="#a24bff" stroke-width="2" stroke-linecap="round"/><circle cx="${W / 2}" cy="${H / 2}" r="10" fill="none" stroke="#ff4fb8" stroke-width="1.4"/></svg>`;
+  }
+  function halfSVG(v, w) {
+    w = w || 34;
+    return `<svg class="tile" viewBox="0 0 50 50" width="${w}" height="${w}" role="img" aria-label="${v} pontos"><rect x="1.5" y="1.5" width="47" height="47" rx="8" fill="url(#g-skin-${skinName()})" stroke="#0b1b3a" stroke-width="1.6"/>${pipsSVG(v, 0, 0, false)}</svg>`;
+  }
+  // Largura de cada peça da mão: cabe a mão na largura e respeita uma fração da altura da tela.
+  function handW(n) {
+    const rows = n > 8 ? 2 : 1, per = Math.ceil(n / rows), land = innerHeight < 520;
+    const byW = Math.floor((innerWidth - 28 - (per - 1) * 5) / per);
+    const byH = Math.floor((innerHeight * (land ? 0.27 : 0.19) / rows - 16) / 2);
+    return Math.max(30, Math.min(byW, byH, 64));
+  }
+  // Ajusta o tamanho das peças da mesa para caber sem rolar (rola só se não houver jeito).
+  function fitBoard() {
+    const b = document.getElementById('board'); if (!b || !G) return;
+    const items = G.st.board; if (!items.length) return;
+    const cs = getComputedStyle(b), availW = b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), availH = b.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const hasD = items.some((e) => e.l === e.r); let best = 28;
+    for (let w = 86; w >= 28; w -= 2) {
+      let x = 0, rows = 1;
+      for (const e of items) { const iw = e.l === e.r ? w / 2 : w; if (x + iw > availW) { rows++; x = 0; } x += iw + 4; }
+      if (rows * ((hasD ? w : w / 2) + 4) <= availH) { best = w; break; }
+    }
+    b.style.setProperty('--bw', best);
+    const last = b.querySelector('.last'); if (last && last.scrollIntoView && best <= 28) last.scrollIntoView({ block: 'nearest' });
+  }
+
+  /* ================= Ícones dos poderes ================= */
+  const PI = {
+    raio: '<polygon points="18,2 6,18 14,18 11,30 24,12 16,12" fill="#ffcf5a" stroke="#fff" stroke-width="1"/>',
+    escudo: '<path d="M16 3 4 7v8c0 8 5 12 12 14 7-2 12-6 12-14V7z" fill="rgba(39,230,255,.35)" stroke="#27e6ff" stroke-width="2"/><path d="M10 15l5 5 8-9" stroke="#fff" fill="none" stroke-width="2"/>',
+    portal: '<circle cx="16" cy="16" r="12" fill="none" stroke="#ff4fb8" stroke-width="2.5"/><circle cx="16" cy="16" r="7" fill="none" stroke="#27e6ff" stroke-width="2.5"/><circle cx="16" cy="16" r="2.5" fill="#fff"/>',
+    congelar: '<g stroke="#9fe9ff" stroke-width="2.4" stroke-linecap="round"><path d="M16 3v26M5 9.5l22 13M5 22.5l22-13"/></g><circle cx="16" cy="16" r="3" fill="#fff"/>',
+    visao: '<circle cx="13" cy="13" r="8" fill="rgba(255,207,90,.2)" stroke="#ffcf5a" stroke-width="2.6"/><path d="M19 19l9 9" stroke="#ffcf5a" stroke-width="3.4" stroke-linecap="round"/><circle cx="10" cy="10" r="2" fill="#fff"/>',
+    coringa: '<polygon points="16,2 20,12 30,12 22,19 25,29 16,23 7,29 10,19 2,12 12,12" fill="#ff4fb8" stroke="#fff" stroke-width="1.2"/>',
+    duplicador: '<rect x="5" y="9" width="20" height="14" rx="3" fill="rgba(82,255,168,.25)" stroke="#52ffa8" stroke-width="2.2"/><rect x="25" y="13" width="3" height="6" fill="#52ffa8"/><path d="M15 12v8M11 16h8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',
+  };
+  const pIcon = (id) => `<svg viewBox="0 0 32 32" aria-hidden="true">${PI[id]}</svg>`;
+
+  /* ================= Utilitários de UI ================= */
+  function toast(msg, ms) {
+    const old = document.getElementById('toast'); if (old) old.remove();
+    const d = document.createElement('div'); d.id = 'toast'; d.className = 'toast'; d.setAttribute('role', 'status'); d.textContent = msg;
+    document.body.appendChild(d); setTimeout(() => d.remove(), ms || 2600);
+  }
+  function showModal(html, cls) {
+    layer.innerHTML = `<div class="modal-bg" data-act="noop"><div class="modal ${cls || ''}" role="dialog" aria-modal="true">${html}</div></div>`;
+    const f = layer.querySelector('button'); if (f) f.focus();
+  }
+  function closeModal() { layer.innerHTML = ''; }
+  function applySettings() {
+    document.body.classList.toggle('rm', !!rm());
+    document.body.classList.toggle('hc', !!profile.settings.highContrast);
+    document.body.classList.remove('t-aurora', 't-vip');
+    if (profile.equipped.table === 'table-aurora') document.body.classList.add('t-aurora');
+    if (profile.equipped.table === 'table-vip') document.body.classList.add('t-vip');
+    A.configure(profile.settings);
+  }
+  function confetti() {
+    if (rm()) return;
+    const cv = document.createElement('canvas'); cv.className = 'conf'; document.body.appendChild(cv);
+    const ctx = cv.getContext && cv.getContext('2d'); if (!ctx) { cv.remove(); return; }
+    cv.width = innerWidth; cv.height = innerHeight;
+    const cols = ['#27e6ff', '#ff4fb8', '#ffcf5a', '#a24bff', '#52ffa8'];
+    const ps = Array.from({ length: 110 }, () => ({ x: innerWidth / 2, y: innerHeight * 0.4, vx: (Math.random() - 0.5) * 12, vy: -Math.random() * 12 - 3, c: cols[(Math.random() * 5) | 0], s: 3 + Math.random() * 5, l: 1 }));
+    let f = 0;
+    (function step() {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      ps.forEach((p) => { p.x += p.vx; p.y += p.vy; p.vy += 0.3; p.l -= 0.008; ctx.globalAlpha = Math.max(0, p.l); ctx.fillStyle = p.c; ctx.shadowColor = p.c; ctx.shadowBlur = 10; ctx.fillRect(p.x, p.y, p.s, p.s); });
+      if (++f < 130) requestAnimationFrame(step); else cv.remove();
+    })();
+  }
+  function startStars() {
+    const cv = document.getElementById('stars'), ctx = cv.getContext && cv.getContext('2d'); if (!ctx) return;
+    let w, h; const resize = () => { w = cv.width = innerWidth; h = cv.height = innerHeight; }; resize(); addEventListener('resize', resize);
+    const st = Array.from({ length: 55 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.6 + 0.3, s: Math.random() * 0.00006 + 0.00002, t: Math.random() * 6 }));
+    let last = 0;
+    (function loop(ts) {
+      if (!rm() && !document.hidden && ts - last > 50) {
+        last = ts; ctx.clearRect(0, 0, w, h);
+        st.forEach((s) => { s.y += s.s * 50; if (s.y > 1) s.y = 0; s.t += 0.05; ctx.globalAlpha = 0.4 + 0.5 * Math.abs(Math.sin(s.t)); ctx.fillStyle = s.r > 1.2 ? '#27e6ff' : '#fff'; ctx.beginPath(); ctx.arc(s.x * w, s.y * h, s.r, 0, 6.3); ctx.fill(); });
+      }
+      requestAnimationFrame(loop);
+    })(0);
+  }
+  function showRewards(list, extra) {
+    const items = list.map((r) => `<div class="item"><div class="ic">${r.icon || (r.kind === 'skin' ? '🀄' : r.kind === 'fx' ? '✨' : r.kind === 'table' ? '🌌' : '🏅')}</div><div><b>${r.name}</b><div class="mu">${r.desc}</div></div></div>`).join('');
+    const chest = '<svg class="chest" viewBox="0 0 150 130" aria-hidden="true"><g class="beam"><polygon points="45,60 105,60 140,0 10,0" fill="#27e6ff" opacity=".35"/></g><rect x="20" y="60" width="110" height="55" rx="8" fill="#241a68" stroke="#27e6ff" stroke-width="3"/><rect x="20" y="78" width="110" height="8" fill="#ffcf5a"/><circle cx="75" cy="82" r="8" fill="#ff4fb8" stroke="#fff" stroke-width="2"/><g class="lid"><path d="M20 60Q20 30 75 30Q130 30 130 60Z" fill="#3a2aa0" stroke="#27e6ff" stroke-width="3"/><rect x="20" y="52" width="110" height="8" fill="#ffcf5a"/></g></svg>';
+    A.play('reward');
+    showModal(`<div style="text-align:center">${chest}<h2>Nova recompensa!</h2></div><div style="display:grid;gap:10px;margin:10px 0">${items}</div>${extra || ''}<button class="btn big" style="width:100%" data-act="closeModal">Continuar</button>`, 'gold');
+  }
+
+  /* ================= Render principal ================= */
+  function render() {
+    applySettings();
+    const fn = SCREENS[screen] || SCREENS.home;
+    app.innerHTML = fn();
+    A.mood(screen === 'game' ? 'game' : 'menu');
+    if (screen === 'game') { fitBoard(); const b = app.querySelector('.board'); if (b) b.scrollTop = b.scrollHeight; }
+  }
+  function go(s) { screen = s; closeModal(); render(); }
+
+  const soundOn = () => !!(profile.settings.music || profile.settings.sfx);
+  const soundBtn = (cls) => `<button class="btn ghost ico snd ${cls || ''}" data-act="toggleSound" aria-pressed="${soundOn()}" aria-label="${soundOn() ? 'Desligar o som' : 'Ligar o som'}" title="${soundOn() ? 'Som ligado: toque para silenciar' : 'Som desligado: toque para ligar'}">${soundOn() ? '🔊' : '🔇'}</button>`;
+  const topbar = (title, back) => `<div class="topbar"><button class="btn ghost sm" data-act="go" data-s="${back || 'home'}" aria-label="Voltar">← Voltar</button><h2>${title}</h2><span class="chip" title="Moedas">🪙 ${profile.coins}</span><span class="chip" title="Cristais neon">💎 ${profile.crystals}</span>${soundBtn()}</div>`;
+
+  const SCREENS = {};
+
+  /* ----- Início ----- */
+  SCREENS.home = () => `<div class="scr home">
+    <div class="home-snd">${soundBtn('lg')}${soundOn() && !A.running() ? '<span class="chip snd-hint">toque para ativar o som</span>' : ''}</div>
+    <div class="hero-dom" aria-hidden="true">${tileSVG({ a: 6, b: 6 }, { vertical: true, w: 44, skin: 'cristal' })}${tileSVG({ a: 3, b: 5 }, { vertical: true, w: 44, skin: 'marfim' })}${tileSVG({ a: 1, b: 4 }, { vertical: true, w: 44, skin: 'rosa' })}</div>
+    <h1 class="logo"><span class="a">AMELIE</span><span class="b">NEON DOMINÓ</span></h1>
+    <p class="slogan">Liga as peças. Descobre os mistérios. Liberta os poderes.</p>
+    <div class="menu">
+      <button class="btn big" data-act="go" data-s="modes">▶ Jogar</button>
+      <button class="btn big gold" data-act="go" data-s="agency">🔍 Agência de Detetives</button>
+      <button class="btn" data-act="startTutorial">🎓 Aprender a jogar</button>
+    </div>
+    <div class="mini">
+      <button class="btn ghost" data-act="go" data-s="quests"><span>🎯</span>Missões</button>
+      <button class="btn ghost" data-act="go" data-s="inventory"><span>🎒</span>Inventário</button>
+      <button class="btn ghost" data-act="go" data-s="vip"><span>👑</span>Clube VIP</button>
+      <button class="btn ghost" data-act="go" data-s="profile"><span>👤</span>Perfil</button>
+      <button class="btn ghost" data-act="go" data-s="settings"><span>⚙️</span>Ajustes</button>
+    </div>
+    <p class="mu" style="font-size:.8rem">Partidas contra o computador (offline). Sem compras, sem anúncios, sem chat.</p>
+  </div>`;
+
+  /* ----- Modos ----- */
+  SCREENS.modes = () => {
+    const vip = C.isVipUnlocked(profile);
+    return `<div class="scr">${topbar('Escolha o modo')}<div class="grid">
+      <div class="card"><h3>🀄 Dominó Clássico</h3><p class="mu">Regras tradicionais, sem poderes. Duelo de 7 peças.</p><button class="btn" data-act="pickMode" data-m="classic">Jogar</button></div>
+      <div class="card"><h3>⚡ Caos Neon</h3><p class="mu">Dominó com energia e 7 poderes especiais: raios, portais, escudos…</p><button class="btn pink" data-act="pickMode" data-m="chaos">Jogar</button></div>
+      <div class="card"><h3>🔍 Agência de Detetives</h3><p class="mu">Casos, pistas e objetivos de investigação.</p><button class="btn gold" data-act="go" data-s="agency">Investigar</button></div>
+      <div class="card"><h3>🎈 Modo Treino</h3><p class="mu">Sem pressão: dica à mão e botão de desfazer. Não conta pontos.</p><button class="btn" data-act="startTraining">Treinar</button></div>
+      <div class="card"><h3>👑 Desafio VIP</h3><p class="mu">${vip ? 'Poderes contra o rival mais esperto, com energia extra. Vença para ganhar prêmios de prestígio!' : 'Desbloqueie o Clube VIP: vença ' + C.VIP_REQ.wins + ' partidas e resolva ' + C.VIP_REQ.cases + ' casos.'}</p><button class="btn gold" data-act="startVip" ${vip ? '' : 'disabled'}>${vip ? 'Aceitar desafio' : '🔒 Bloqueado'}</button></div>
+    </div></div>`;
+  };
+  SCREENS.difficulty = () => `<div class="scr">${topbar('Dificuldade', 'modes')}<div class="grid">
+    <div class="card"><h3>🙂 Fácil</h3><p class="mu">O rival joga com calma. Ótimo para aprender.</p><button class="btn" data-act="startGame" data-l="easy">Escolher</button></div>
+    <div class="card"><h3>🤔 Médio</h3><p class="mu">Pensa nas pontas e nos valores das peças.</p><button class="btn" data-act="startGame" data-l="medium">Escolher</button></div>
+    <div class="card"><h3>😎 Difícil</h3><p class="mu">Avalia várias jogadas e o risco de bloqueio.</p><button class="btn pink" data-act="startGame" data-l="hard">Escolher</button></div>
+  </div></div>`;
+
+  /* ================= Partida ================= */
+  const AI_SAY = ['Boa jogada!', 'Hmm, essa foi inteligente!', 'Vamos investigar esta sequência!', 'Você está ficando muito bom nisso!', 'Que combinação bonita!'];
+  const AI_PLAY = ['Minha vez… deixa eu ver…', 'Hmm, que tal esta?', 'Encaixou!', 'Uau, a mesa está animada!'];
+
+  function newG(o) {
+    const st = E.newGame({ mode: o.mode, level: o.level, powers: o.powers, enemyEnergy: o.enemyEnergy });
+    return Object.assign({ st, sel: null, pick: null, busy: false, msg: o.training ? 'Sem pressão, vamos treinar!' : 'Boa sorte!', undo: [], hintTile: null, flip: false, lastId: null, vip: false, training: false, caseId: null, tut: null, finished: false }, o.extra || {}, { level: o.level });
+  }
+  function startGameFlow(o) {
+    closeModal();
+    G = newG(o); screen = 'game'; keepAwake(); render();
+    if (G.st.turn === 'c') { G.msg = 'Eu começo!'; aiLoop(); }
+  }
+
+  function currentCoach() {
+    const g = G, st = g.st;
+    if (g.tut) return g.tut.coach;
+    if (st.over) return '';
+    if (st.turn !== 'p') return 'Vez do Volt…';
+    const moves = E.legalMoves(st, 'p');
+    if (g.pick === 'portal') return 'Portal aberto! Toque na peça da sua mão que você quer trocar.';
+    if (st.wildArmed) return 'Coringa ativo! Escolha QUALQUER peça e toque numa ponta.';
+    if (!moves.length) return st.stock.length ? 'Nenhuma peça encaixa. Toque em “Comprar” para pegar uma do monte.' : 'Nenhuma peça encaixa e o monte acabou. Toque em “Passar a vez”.';
+    if (!st.board.length) return st.forcedFirst === (moves[0] && moves[0].tileId) && st.forcedFirst ? 'Você começa! Toque na peça com ✓ e depois na mesa.' : 'Toque numa peça e depois na mesa.';
+    const ids = E.playableTileIds(st, 'p');
+    if (moves.length === 1) return 'Só uma jogada possível: a peça que está pulsando!';
+    return ids.length + ' peça(s) encaixam (marcadas com ✓). Toque numa e depois numa ponta.';
+  }
+
+  SCREENS.game = () => {
+    const g = G; if (!g) return SCREENS.home();
+    const st = g.st, my = st.turn === 'p' && !st.over && !g.busy;
+    const b = st.board, n = b.length;
+    const playable = my ? E.playableTileIds(st, 'p') : [];
+    const moves = my ? E.legalMoves(st, 'p') : [];
+    const sel = g.sel ? st.hands.p.find((t) => t.id === g.sel) : null;
+    const selMoves = sel ? E.movesForTile(st, sel, st.wildArmed).filter((m) => !(st.forcedFirst && b.length === 0 && m.tileId !== st.forcedFirst)) : [];
+    const canSide = (s) => my && sel && selMoves.some((m) => m.side === s);
+    const only = moves.length === 1 ? moves[0].tileId : null;
+    const ends = E.endsOf(st);
+    const W = handW(st.hands.p.length);
+
+    const boardHTML = n ? b.map((e, i) => {
+      const dbl = e.l === e.r;
+      const cls = (e.id === g.lastId ? 'last ' : '') + (e.wild ? 'wildt ' : '') + (e.id === g.lastId ? 'ent' : '');
+      return `<div class="${cls}" aria-label="Mesa, posição ${i + 1}">${tileSVG({ a: e.l, b: e.r }, { vertical: dbl, fluid: dbl ? 0.5 : 1 })}</div>`;
+    }).join('') : '<div class="empty">A mesa está vazia.<br>A primeira peça vai aqui!</div>';
+
+    const endBtn = (s, label, aria, val) => `<button class="endbtn ${canSide(s) ? 'on' : ''}" data-act="end" data-s="${s}" data-dz="${s}" ${canSide(s) ? '' : 'aria-disabled="true"'} aria-label="${aria}"><span>${label}</span>${val != null ? halfSVG(val, 30) : ''}</button>`;
+    const endsHTML = n ? endBtn('L', '◀ Esquerda', 'Ponta esquerda', ends.L) + endBtn('R', 'Direita ▶', 'Ponta direita', ends.R)
+      : `<button class="endbtn ${canSide('S') ? 'on' : ''}" data-act="end" data-s="S" data-dz="S"><span>${canSide('S') ? 'Jogar aqui' : 'Mesa vazia'}</span></button>`;
+
+    const hand = st.hands.p.map((t) => {
+      const can = playable.includes(t.id);
+      let cls = 'tile-btn ';
+      if (g.pick === 'portal') cls += 'pick';
+      else if (my) cls += (can ? 'playable ' : 'dim ') + (g.sel === t.id ? 'sel ' : '') + ((only === t.id || g.hintTile === t.id) ? 'hint' : '');
+      return `<button class="${cls}" draggable="${can}" data-act="tile" data-id="${t.id}" aria-label="Peça ${t.a} e ${t.b}${can ? ', jogável' : ''}${g.sel === t.id ? ', selecionada' : ''}">${tileSVG(t, { vertical: true, w: W })}</button>`;
+    }).join('');
+
+    const backs = Array.from({ length: st.hands.c.length }, () => backSVG(true, 13)).join('');
+    const bubble = g.busy ? '<span class="think" aria-label="Pensando"><i></i><i></i><i></i></span>' : g.msg;
+    const eFull = (v) => Array.from({ length: st.cfg.maxEnergy }, (_, i) => `<i class="${i < v ? 'f' : ''}"></i>`).join('');
+    const powersHTML = st.powersOn ? `<div class="pwrap"><div class="status"><span class="energy" aria-label="Energia ${st.energy.p} de ${st.cfg.maxEnergy}">${eFull(st.energy.p)}</span><b>⚡${st.energy.p}</b>${st.shield.p ? '<span class="chip">🛡</span>' : ''}${st.frozen.p ? '<span class="chip">❄' + st.frozen.p + '</span>' : ''}<span class="chip rv">Rival ⚡${st.energy.c}${st.shield.c ? ' 🛡' : ''}${st.frozen.c ? ' ❄' + st.frozen.c : ''}</span><button class="btn ghost sm q" data-act="powerRules" aria-label="Regras dos poderes">?</button></div>
+      <div class="powers" role="group" aria-label="Poderes">${E.POWER_IDS.map((id) => {
+        const pw = st.cfg.powers[id], err = my ? E.powerError(st, 'p', id, st.hands.p[0] && st.hands.p[0].id) : 'x';
+        const cd = st.cooldown.p[id] ? ' ⏳' + st.cooldown.p[id] : '';
+        return `<button class="pw ${(id === 'portal' && g.pick === 'portal') || (id === 'coringa' && st.wildArmed) ? 'on' : ''}" data-act="power" data-id="${id}" ${err ? 'aria-disabled="true"' : ''} style="${err ? 'opacity:.42' : ''}" title="${pw.short}" aria-label="${pw.name}, custo ${pw.cost}">${pIcon(id)}<span class="pn">${pw.name.split(' ')[0]}</span><b>${pw.cost}⚡${cd}</b></button>`;
+      }).join('')}</div></div>` : '';
+
+    const noMove = my && !moves.length;
+    const acts = `<div class="acts">
+      <button class="btn ${noMove && st.stock.length ? 'gold' : ''}" data-act="draw" ${noMove && st.stock.length ? '' : 'disabled'}>🂠 Comprar <small>(${st.stock.length})</small></button>
+      <button class="btn ${noMove && !st.stock.length ? 'gold' : ''}" data-act="pass" ${noMove && !st.stock.length ? '' : 'disabled'}>⏭ Passar</button>
+      ${st.wildArmed ? `<button class="btn pink sm" data-act="flip">↻ Virar${g.flip ? ' ✓' : ''}</button>` : ''}
+      ${(g.training || g.tut || g.level === 'easy') && my && g.pick !== 'portal' ? '<button class="btn ghost" data-act="hint" aria-label="Dica">💡</button>' : ''}
+      ${g.training && g.undo.length ? '<button class="btn ghost" data-act="undo" aria-label="Desfazer">↶</button>' : ''}
+      ${g.pick === 'portal' ? '<button class="btn ghost" data-act="cancelPick">Cancelar</button>' : ''}
+    </div>`;
+    const title = g.tut ? 'Tutorial' : g.training ? 'Treino' : g.vip ? '👑 Desafio VIP' : g.caseId ? 'Caso: ' + C.CASES.find((c) => c.id === g.caseId).title : st.powersOn ? 'Caos Neon' : 'Clássico';
+    const turnChip = st.over ? 'Fim' : st.turn === 'p' ? '🟢 Sua vez' : '⏳ Volt';
+
+    return `<div class="scr game ${g.tut ? 'tutg' : ''}">
+      <div class="hud"><button class="btn ghost ico" data-act="pause" aria-label="Pausar">⏸</button>${soundBtn()}
+        <div class="opp"><span class="avatar sm" aria-hidden="true">🤖</span><div class="oi"><b>Volt</b> <span class="mu">${st.hands.c.length}</span><div class="backs">${backs}</div></div><div class="bubble" aria-live="polite">${bubble}</div></div>
+        <span class="chip turn">${turnChip}</span></div>
+      <div class="table" id="table"><div class="ttl">${title}</div><div class="ends">${endsHTML}</div><div class="board" id="board" style="--bw:60">${boardHTML}</div><div class="coach" aria-live="polite">${currentCoach()}</div><div class="fx" id="fx"></div></div>
+      <div class="ctl">${powersHTML}${acts}</div>
+      <div class="hand" id="hand">${hand}</div>
+    </div>`;
+  };
+
+  /* ---------- Efeitos ---------- */
+  function playFx(kind) {
+    const fx = document.getElementById('fx'); if (!fx || rm()) return;
+    const add = (html) => { const d = document.createElement('div'); d.style.cssText = 'position:absolute;inset:0'; d.innerHTML = html; fx.appendChild(d); setTimeout(() => d.remove(), 1400); };
+    if (kind === 'bolt') {
+      const w = fx.clientWidth || 300, h = fx.clientHeight || 200; let d = 'M0 ' + h * 0.5, x = 0, y = h * 0.5;
+      while (x < w) { x += 28 + Math.random() * 18; y = h * 0.5 + (Math.random() - 0.5) * h * 0.55; d += ` L${x.toFixed(0)} ${y.toFixed(0)}`; }
+      add(`<svg class="bolt" width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${d}"/></svg>`);
+    } else if (kind === 'portal') add('<div class="portal"></div>');
+    else if (kind === 'stars') add(Array.from({ length: 10 }, () => `<span class="star" style="left:${Math.random() * 100}%;top:${Math.random() * 30}%;font-size:${14 + Math.random() * 14}px">✦</span>`).join(''));
+    else if (kind === 'flash') add('<div class="flash"></div>');
+    else if (kind === 'flashblue') add('<div class="flash" style="background:radial-gradient(circle,rgba(120,220,255,.5),transparent 65%)"></div>');
+  }
+  function placeFx() { const f = profile.equipped.fx; playFx(f === 'fx-estrelas' ? 'stars' : f === 'fx-portal' ? 'portal' : 'bolt'); }
+
+  /* ---------- Ações ---------- */
+  function canAct() { return G && !G.finished && G.st.turn === 'p' && !G.busy && !G.st.over; }
+  function onEvents(events, byAI) {
+    for (const ev of events) {
+      if (ev.t === 'play') {
+        G.lastId = ev.tile.id; A.play('place'); buzz(ev.p === 'p' ? 16 : 8);
+        if (ev.wild) G.msg = 'Coringa em ação!';
+        setTimeout(placeFx, 30);
+        if (!byAI && Math.random() < 0.35 && !G.tut) G.msg = AI_SAY[(Math.random() * AI_SAY.length) | 0];
+        if (byAI && Math.random() < 0.4) G.msg = AI_PLAY[(Math.random() * AI_PLAY.length) | 0];
+      } else if (ev.t === 'draw') { A.play('draw'); if (byAI) G.msg = 'Vou comprar uma peça…'; }
+      else if (ev.t === 'pass') { toast(ev.p === 'p' ? 'Você passou a vez.' : 'Volt passou a vez.'); if (byAI) G.msg = 'Passo a vez!'; }
+      else if (ev.t === 'power') {
+        const nm = E.POWERS[ev.power].name;
+        A.play('power:' + ev.power); buzz([20, 30, 40]);
+        const who = ev.p === 'p' ? 'Você usou' : 'Volt usou';
+        if (ev.blocked) { toast('🛡 O Escudo Neon bloqueou o ' + nm + '!'); setTimeout(() => playFx('flashblue'), 30); }
+        else {
+          if (ev.power === 'raio') { setTimeout(() => playFx('bolt'), 30); toast('⚡ ' + who + ' ' + nm + (ev.p === 'p' ? ': Volt comprou 1 peça!' : ': você comprou 1 peça!')); }
+          else if (ev.power === 'portal') { setTimeout(() => playFx('portal'), 30); toast('🌀 ' + who + ' ' + nm + (ev.p === 'p' ? ': peça trocada com o monte.' : '.')); }
+          else if (ev.power === 'congelar') { setTimeout(() => playFx('flashblue'), 30); toast('❄ ' + who + ' ' + nm + ': poderes congelados por 2 turnos!'); }
+          else if (ev.power === 'visao') {
+            const i = ev.info; G.hintTile = i.hint;
+            toast('🔍 O rival tem ' + i.oppFits + ' peça(s) que encaixam agora.' + (i.hint ? ' Dica: a peça que pulsa é a sua melhor jogada.' : ''), 4200);
+            setTimeout(() => playFx('flash'), 30);
+          } else { setTimeout(() => playFx('flash'), 30); toast((ev.p === 'p' ? 'Você usou ' : 'Volt usou ') + nm + '.'); }
+        }
+        if (ev.p === 'c') G.msg = 'Poder ativado: ' + nm + '!';
+      }
+    }
+  }
+  function doAction(a) {
+    const g = G; if (!g) return false;
+    if (g.training && a.player === 'p' && a.type === 'play') g.undo.push(E.clone(g.st));
+    const r = E.apply(g.st, a);
+    if (!r.ok) { toast(r.error); A.play('bad'); buzz([25, 40, 25]); const el = app.querySelector('.tile-btn.sel'); if (el) { el.classList.add('shake'); } return false; }
+    g.st = r.state; g.sel = null; g.pick = null; g.flip = false; if (a.type !== 'power') g.hintTile = null;
+    onEvents(r.events, a.player === 'c');
+    render();
+    if (g.st.over) { finishGame(); return true; }
+    if (g.tut) { tutAfter(r.events); return true; }
+    if (g.st.turn === 'c' && !g.busy) aiLoop();
+    return true;
+  }
+  async function aiLoop() {
+    const g = G; if (!g || g.busy) return;
+    g.busy = true; render();
+    while (G === g && !g.st.over && g.st.turn === 'c') {
+      const fast = rm();
+      await sleep(fast ? 200 : 650 + Math.random() * 600);
+      if (G !== g) return;
+      const act = E.aiNext(g.st, g.level, Math.random);
+      const r = E.apply(g.st, act);
+      if (!r.ok) { console.error('IA ação inválida', act, r.error); break; }
+      g.st = r.state; g.hintTile = null; onEvents(r.events, true);
+      if (g.st.over) break;
+      g.busy = g.st.turn === 'c'; render();
+    }
+    if (G !== g) return;
+    g.busy = false; render();
+    if (g.st.over) finishGame(); else if (g.st.turn === 'p') A.play('turn');
+  }
+
+  /* ---------- Fim de partida ---------- */
+  function finishGame() {
+    const g = G; if (!g || g.finished) return; g.finished = true;
+    const st = g.st, res = st.result, won = res.winner === 'p', draw = res.winner === null;
+    const lines = [];
+    let fresh = [], levelUp = false, extra = '';
+    if (!g.training && !g.tut) {
+      const rec = C.recordMatch(profile, { won, draw, vip: g.vip, tilesPlayed: st.stats.p.played, doubles: st.stats.p.doubles, powers: st.stats.p.powers });
+      lines.push('🪙 +' + rec.coins + ' moedas · ✨ +' + rec.xp + ' XP'); levelUp = rec.levelUp;
+      if (g.caseId) {
+        const c = C.CASES.find((x) => x.id === g.caseId);
+        if (C.checkMatchObjective(c, st.stats.p, won)) {
+          const s = C.solveCase(profile, c);
+          if (s.first) { lines.push('🔍 Caso resolvido: ' + c.title + '! 🪙 +' + c.reward.coins + ' 💎 +' + c.reward.crystals); levelUp = levelUp || s.levelUp; A.play('mystery'); }
+          else lines.push('Você já tinha resolvido este caso — sem nova recompensa.');
+        } else lines.push('Objetivo do caso não cumprido: ' + c.intro);
+      }
+      fresh = C.syncRewards(profile);
+      save();
+    }
+    const title = draw ? 'Empate!' : won ? 'Vitória!' : 'Boa partida!';
+    const why = res.reason === 'domino' ? (won ? 'Você bateu! Ficou sem peças.' : 'Volt ficou sem peças.') : res.reason === 'blocked' ? 'O jogo fechou. Vence quem tem menos pontos na mão.' : 'O jogo fechou com a mesma soma.';
+    const html = `<div style="text-align:center"><h2 style="font-size:2rem">${won ? '🏆 ' : draw ? '🤝 ' : '🌟 '}${title}</h2><p>${why}</p></div>
+      <div class="card"><div class="row" style="justify-content:space-around"><div>Seus pontos na mão<br><b style="font-size:1.4rem">${res.sums.p}</b></div><div>Pontos do Volt<br><b style="font-size:1.4rem">${res.sums.c}</b></div></div>
+      ${res.winner ? `<p style="text-align:center">${won ? 'Você' : 'Volt'} faz <b>${res.points}</b> ponto(s) nesta partida.</p>` : ''}
+      <p class="mu" style="text-align:center">Peças jogadas: ${st.stats.p.played}${st.powersOn ? ' · Poderes usados: ' + st.stats.p.powers : ''}</p>${lines.map((l) => '<p style="margin:4px 0;text-align:center">' + l + '</p>').join('')}${g.training ? '<p class="mu" style="text-align:center">Treino não conta pontos nem recompensas.</p>' : ''}</div>
+      ${levelUp ? '<p style="text-align:center;color:var(--gd)">⬆ Subiu de nível! Agora você é nível ' + C.levelOf(profile) + '.</p>' : ''}
+      <div class="row" style="margin-top:12px"><button class="btn grow" data-act="again">Jogar de novo</button><button class="btn ghost grow" data-act="go" data-s="home">Menu</button></div>`;
+    A.play(won ? 'win' : draw ? 'level' : 'lose'); if (won) { confetti(); buzz([40, 60, 40, 60, 120]); }
+    if (levelUp) setTimeout(() => A.play('level'), 900);
+    showModal(html, won ? 'gold' : '');
+    if (fresh.length) setTimeout(() => showRewards(fresh, '<p class="mu" style="text-align:center">Veja no 🎒 Inventário.</p>'), won ? 1600 : 900);
+  }
+
+  /* ---------- Tutorial interativo ---------- */
+  const T = (id) => E.parseTile(id);
+  function tutState(o) {
+    return E.newGame({ seed: 1, level: 'easy', powers: false, custom: Object.assign({
+      hands: { p: [], c: [T('6-6'), T('5-5'), T('0-0')] }, stock: [], board: [], turn: 'p', passes: 0, over: false, result: null, forcedFirst: null,
+      energy: { p: 3, c: 3 }, shield: { p: false, c: false }, frozen: { p: 0, c: 0 }, cooldown: { p: {}, c: {} }, wildUsed: { p: false, c: false }, wildArmed: false, powerUsedThisTurn: false, drewThisTurn: false, missing: { p: [], c: [] },
+      stats: { p: { played: 0, doubles: 0, powers: 0, draws: 0 }, c: { played: 0, doubles: 0, powers: 0, draws: 0 } }, turnNo: 1, log: [],
+    }, o) });
+  }
+  const TUT = [
+    null,
+    { coach: '1/4 · Encaixe! A mesa mostra um 2 na esquerda e um 4 na direita. Toque na peça com ✓ (ela tem 4 pontos) e depois na ponta direita.', done: 'play',
+      state: () => tutState({ board: [{ id: '2-4', l: 2, r: 4, by: 'c' }], hands: { p: [T('1-4'), T('3-3'), T('6-5')], c: [T('6-6'), T('5-5'), T('0-0')] }, stock: [T('0-1'), T('2-3')] }) },
+    { coach: '2/4 · Agora nenhuma peça sua encaixa (as pontas são 1 e 2). Sem jogada, você compra! Toque em “Comprar”.', done: 'draw',
+      state: () => tutState({ board: [{ id: '1-2', l: 1, r: 2, by: 'c' }], hands: { p: [T('5-5'), T('6-0'), T('3-4')], c: [T('6-6'), T('4-4')] }, stock: [T('4-5'), T('2-3')] }) },
+    { coach: '3/4 · Boa! A peça nova encaixa. Toque nela (✓) e depois na ponta que combina.', done: 'play', state: null },
+  ];
+  function startTutorial() {
+    closeModal(); A.unlock();
+    showModal(`<h2>🎓 Como funciona uma peça</h2><div class="row" style="justify-content:center;margin:12px 0">${tileSVG({ a: 4, b: 2 }, { vertical: false, w: 150, skin: skinName() })}</div>
+      <p>Cada peça tem <b>duas metades</b>, separadas por uma linha. Os <b>pontos</b> dizem o número de cada lado. Esta peça é <b>4 e 2</b>.</p>
+      <p>Você joga uma peça colando um lado com o <b>mesmo número</b> de uma ponta da mesa. Peças com os dois lados iguais são <b>duplas</b>. Peça com nenhum ponto vale zero.</p>
+      <p class="mu">Vamos praticar em 3 passos rápidos!</p><button class="btn big" style="width:100%" data-act="tutGo">Vamos lá!</button>`);
+  }
+  function tutGo() {
+    closeModal();
+    G = { st: TUT[1].state(), sel: null, pick: null, busy: false, msg: 'Eu só observo, mas torço por você!', undo: [], hintTile: null, flip: false, lastId: null, vip: false, training: false, caseId: null, level: 'easy', finished: false, tut: { i: 1, coach: TUT[1].coach } };
+    screen = 'game'; keepAwake(); render();
+  }
+  function tutAfter(events) {
+    const t = G.tut, step = TUT[t.i];
+    const ok = events.some((e) => e.p === 'p' && e.t === step.done);
+    if (!ok) return;
+    A.play('mystery');
+    if (t.i === 3 || (t.i === 1)) { /* avança */ }
+    if (t.i === 2) { t.i = 3; t.coach = TUT[3].coach; G.msg = 'Comprou! Agora jogue.'; render(); return; }
+    if (t.i === 1) { t.i = 2; G.st = TUT[2].state(); t.coach = TUT[2].coach; G.lastId = null; toast('✅ Muito bem! Próximo passo.'); render(); return; }
+    // fim do passo 3 → conclusão
+    const first = profile.stats.tutorial < 1;
+    if (first) { C.bump(profile, 'tutorial', 1); profile.coins += 20; C.addXp(profile, 20); }
+    const fresh = C.syncRewards(profile); save();
+    confetti(); A.play('win');
+    G = null;
+    showModal(`<div style="text-align:center"><h2>🎓 Tutorial concluído!</h2><p>4/4 · Você já sabe jogar: <b>encaixar</b>, <b>comprar</b> e <b>passar</b>. Vence quem ficar sem peças primeiro!</p>${first ? '<p>🪙 +20 moedas · ✨ +20 XP</p>' : ''}</div>
+      <div class="row"><button class="btn grow" data-act="startTraining">Praticar no Treino</button><button class="btn ghost grow" data-act="go" data-s="home">Menu</button></div>`, 'gold');
+    if (fresh.length) setTimeout(() => showRewards(fresh), 1400);
+    screen = 'home';
+  }
+
+  /* ================= Agência de Detetives ================= */
+  const NPC = { 'Nina, a robô-farol': '🗼', 'Capitão Fagulha': '🧑‍🚀', 'Professora Lumi': '🦉' };
+  SCREENS.agency = () => {
+    const solved = profile.solved.length, total = C.CASES.length;
+    return `<div class="scr">${topbar('Agência de Detetives Amelie')}
+      <div class="card"><div class="row"><div class="grow"><b>Mapa de investigação</b><div class="mu">${solved} de ${total} casos resolvidos</div></div></div><div class="bar" style="margin-top:8px"><i style="width:${solved / total * 100}%"></i></div>
+      <p class="mu" style="margin:8px 0 0">Resolva casos para ganhar moedas, cristais e abrir o Clube VIP. Pode pedir até 3 pistas — errar faz parte de investigar!</p></div>
+      <div class="grid" style="margin-top:12px">${C.CASES.map((c, i) => {
+        const done = profile.solved.includes(c.id);
+        return `<div class="card"><div class="npc"><div class="avatar" aria-hidden="true">${NPC[c.npc] || '🔍'}</div><div><b>${i + 1}. ${c.title}</b> ${done ? '✅' : ''}<div class="mu">${'★'.repeat(c.diff)}${'☆'.repeat(3 - c.diff)} · ${c.type === 'match' ? 'Caso de partida' : c.type === 'chain' ? 'Trilha' : c.type === 'code' ? 'Código' : 'Peça que falta'}</div></div></div><button class="btn sm" style="margin-top:8px;width:100%" data-act="openCase" data-id="${c.id}">${done ? 'Rever caso' : 'Investigar'}</button></div>`;
+      }).join('')}</div></div>`;
+  };
+  function caseTile(id, w, extra) { return tileSVG(T(id), { w: w || 84 }); }
+  SCREENS.case = () => {
+    const c = D.c, d = D;
+    const done = profile.solved.includes(c.id);
+    let puzzle = '';
+    if (c.type === 'missing') {
+      puzzle = `<div class="puz">${tileSVG(T(c.left), { w: 84 })}<span class="slot" style="width:84px;height:42px">?</span>${tileSVG(T(c.right), { w: 84 })}</div><p class="mu" style="text-align:center">Qual peça encaixa no lugar do “?”</p>
+        <div class="puz">${c.options.map((o) => `<button class="tile-btn" data-act="answer" data-v="${o}" aria-label="Escolher peça ${o.replace('-', ' e ')}">${tileSVG(T(o), { w: 84 })}</button>`).join('')}</div>`;
+    } else if (c.type === 'code') {
+      puzzle = `<p class="mu" style="text-align:center">Toque na peça que resolve o enigma:</p><div class="puz">${c.options.map((o) => `<button class="tile-btn" data-act="answer" data-v="${o}">${tileSVG(T(o), { w: 84 })}</button>`).join('')}</div>`;
+    } else if (c.type === 'chain') {
+      const cur = d.seq.length ? (() => { let cu = c.start; d.seq.forEach((id) => { const t = T(id); cu = t.a === cu ? t.b : t.a; }); return cu; })() : c.start;
+      puzzle = `<div class="row" style="justify-content:center"><b>Ponta atual:</b> ${halfSVG(cur, 38)}</div>
+        <div class="seq" aria-label="Sua fila">${d.seq.length ? d.seq.map((id) => tileSVG(T(id), { w: 64 })).join('') : '<span class="mu">Sua fila aparece aqui</span>'}</div>
+        <div class="puz">${c.tiles.filter((id) => !d.seq.includes(id)).map((o) => `<button class="tile-btn" data-act="chainAdd" data-v="${o}">${tileSVG(T(o), { w: 72 })}</button>`).join('')}</div>
+        <div class="row" style="justify-content:center"><button class="btn ghost sm" data-act="chainUndo">↶ Tirar a última</button><button class="btn ghost sm" data-act="chainClear">Limpar</button></div>`;
+    } else if (c.type === 'match') {
+      puzzle = `<div class="card" style="text-align:center"><p><b>Objetivo:</b> ${c.intro}</p><button class="btn gold big" data-act="startCaseMatch">▶ Começar a partida</button></div>`;
+    }
+    const hints = c.hints.slice(0, d.hints).map((h, i) => `<div class="coach"><b>Pista ${i + 1}:</b> ${h}</div>`).join('');
+    return `<div class="scr">${topbar(c.title, 'agency')}
+      <div class="card"><div class="npc"><div class="avatar" aria-hidden="true">${NPC[c.npc] || '🔍'}</div><div><b>${c.npc}</b><p style="margin:4px 0">${d.msg || c.intro}</p></div></div></div>
+      <div class="card" style="margin-top:10px">${puzzle}</div>
+      <div style="margin-top:10px;display:grid;gap:6px">${hints}</div>
+      <div class="row" style="margin-top:10px"><button class="btn" data-act="hint3" ${d.hints >= 3 ? 'disabled' : ''}>💡 Pedir pista (${d.hints}/3)</button>${done ? '<span class="chip">✅ Já resolvido (sem nova recompensa)</span>' : ''}</div></div>`;
+  };
+  function caseSolved() {
+    const c = D.c;
+    const first = !profile.solved.includes(c.id);
+    const s = C.solveCase(profile, c);
+    A.play('mystery'); confetti();
+    const fresh = C.syncRewards(profile); save();
+    D.msg = 'Caso resolvido! Você é um verdadeiro detetive! 🔍';
+    showModal(`<div style="text-align:center"><h2>🔍 Caso resolvido!</h2><p>${c.title}</p>${first ? `<p>🪙 +${c.reward.coins} · 💎 +${c.reward.crystals} · ✨ +${c.reward.xp} XP</p>${s.levelUp ? '<p style="color:var(--gd)">⬆ Subiu de nível!</p>' : ''}` : '<p class="mu">Você já tinha resolvido este caso — sem nova recompensa.</p>'}</div><button class="btn big" style="width:100%" data-act="closeAgency">Voltar à Agência</button>`, 'gold');
+    if (fresh.length) setTimeout(() => showRewards(fresh), 1200);
+  }
+
+  /* ================= Missões, Inventário, Perfil, VIP, Ajustes ================= */
+  SCREENS.quests = () => {
+    C.ensureDaily(profile);
+    const cats = {}; C.QUESTS.forEach((q) => { (cats[q.cat] = cats[q.cat] || []).push(q); });
+    const lv = C.levelOf(profile);
+    return `<div class="scr">${topbar('Missões')}
+      <div class="card"><b>Nível ${lv}</b><div class="bar" style="margin:6px 0"><i style="width:${C.levelProgress(profile)}%"></i></div><div class="mu">${C.levelProgress(profile)}/100 XP para o próximo nível</div></div>
+      ${Object.keys(cats).map((k) => `<h3 style="margin-top:14px">${k}</h3><div class="grid">${cats[k].map((q) => {
+        const pr = Math.min(q.target, profile.daily.progress[q.stat] || 0), ok = pr >= q.target, cl = profile.daily.claimed[q.id];
+        return `<div class="card"><b>${q.text}</b><div class="bar" style="margin:8px 0"><i style="width:${pr / q.target * 100}%"></i></div><div class="row"><span class="mu grow">${pr}/${q.target} · 🪙${q.reward.coins}${q.reward.crystals ? ' 💎' + q.reward.crystals : ''}</span><button class="btn sm ${ok && !cl ? 'gold' : ''}" data-act="claim" data-id="${q.id}" ${ok && !cl ? '' : 'disabled'}>${cl ? 'Resgatada ✓' : ok ? 'Resgatar' : 'Em andamento'}</button></div></div>`;
+      }).join('')}</div>`).join('')}
+      <h3 style="margin-top:14px">Conquistas especiais</h3><div class="grid">${C.REWARDS.filter((r) => r.kind === 'title').map((r) => `<div class="card item ${C.rewardUnlocked(profile, r) ? '' : 'locked'}"><div class="ic">🏅</div><div><b>${r.name}</b><div class="mu">${C.rewardUnlocked(profile, r) ? 'Conquistado!' : C.condText(r)}</div></div></div>`).join('')}</div>
+      <p class="mu" style="margin-top:12px">Desafios semanais precisam de um servidor para atualizar de forma justa — ainda não estão disponíveis nesta versão local.</p></div>`;
+  };
+  SCREENS.inventory = () => {
+    const items = C.REWARDS.filter((r) => r.kind === tab);
+    return `<div class="scr">${topbar('Inventário')}<div class="tabs" role="tablist">${Object.keys(C.KINDS).map((k) => `<button class="tab ${tab === k ? 'on' : ''}" data-act="tab" data-k="${k}" role="tab">${C.KINDS[k]}</button>`).join('')}</div>
+      <div class="grid">${items.map((r) => {
+        const has = profile.inventory.includes(r.id), eq = profile.equipped[r.kind] === r.id;
+        const icon = r.kind === 'skin' ? tileSVG({ a: 6, b: 5 }, { w: 70, skin: SKINS[r.id] }) : r.icon || (r.kind === 'fx' ? '✨' : r.kind === 'table' ? '🌌' : '🏅');
+        return `<div class="card item ${has ? '' : 'locked'}"><div class="ic ${r.kind === 'skin' ? 'skin' : ''}">${has || r.kind !== 'skin' ? icon : '🔒'}</div><div class="grow"><b>${r.name}</b> ${r.vip ? '👑' : ''}<div class="mu">${has ? r.desc : '🔒 ' + C.condText(r)}</div></div>${has ? `<button class="btn sm ${eq ? 'gold' : ''}" data-act="equip" data-id="${r.id}" ${eq ? 'disabled' : ''}>${eq ? 'Em uso' : r.kind === 'title' || r.kind === 'avatar' ? 'Usar' : 'Equipar'}</button>` : ''}</div>`;
+      }).join('')}</div></div>`;
+  };
+  SCREENS.profile = () => {
+    const av = C.REWARDS.find((r) => r.id === profile.equipped.avatar), ti = C.REWARDS.find((r) => r.id === profile.equipped.title);
+    const s = profile.stats;
+    return `<div class="scr">${topbar('Perfil e conquistas')}
+      <div class="card item"><div class="avatar" style="width:64px;height:64px;font-size:36px">${av ? av.icon : '🤖'}</div><div class="grow"><b style="font-size:1.2rem">Jogador Neon</b><div class="mu">${ti ? ti.name : 'Sem título'} · Nível ${C.levelOf(profile)}</div><div class="bar" style="margin-top:6px"><i style="width:${C.levelProgress(profile)}%"></i></div></div></div>
+      <div class="grid" style="margin-top:12px">${[['Partidas', s.games], ['Vitórias', s.wins], ['Derrotas', s.losses], ['Empates', s.draws], ['Peças jogadas', s.tilesPlayed], ['Duplas jogadas', s.doubles], ['Poderes usados', s.powers], ['Casos resolvidos', s.cases + '/' + C.CASES.length]].map(([k, v]) => `<div class="card"><div class="mu">${k}</div><b style="font-size:1.5rem">${v}</b></div>`).join('')}</div>
+      <p class="mu" style="margin-top:12px">Seu progresso fica salvo só neste navegador. Não pedimos nome, e-mail nem dados pessoais.</p></div>`;
+  };
+  SCREENS.vip = () => {
+    const vip = C.isVipUnlocked(profile);
+    if (!vip) {
+      const w = Math.min(profile.stats.wins, C.VIP_REQ.wins), c = Math.min(profile.stats.cases, C.VIP_REQ.cases);
+      return `<div class="scr">${topbar('Clube VIP Amelie')}<div class="vipdoor"><div><div style="font-size:3rem">🔒</div><b style="color:var(--gd);font-size:1.2rem">Porta holográfica</b><p class="mu" style="font-size:.9rem">Prove seu talento para entrar!</p></div></div>
+        <div class="card"><b>Vitórias:</b> ${w}/${C.VIP_REQ.wins}<div class="bar" style="margin:6px 0 10px"><i style="width:${w / C.VIP_REQ.wins * 100}%"></i></div><b>Casos resolvidos:</b> ${c}/${C.VIP_REQ.cases}<div class="bar" style="margin-top:6px"><i style="width:${c / C.VIP_REQ.cases * 100}%"></i></div><p class="mu">O VIP é conquistado jogando. Nunca é preciso pagar.</p></div></div>`;
+    }
+    const vr = C.REWARDS.filter((r) => r.vip);
+    return `<div class="scr">${topbar('Clube VIP Amelie')}<div class="vip-room"><div class="card" style="border-color:var(--gd);text-align:center"><h2 style="color:var(--gd)">👑 Bem-vinda, Convidada de Honra!</h2><p class="mu">Sala dourada com vitrine de colecionáveis e desafios de prestígio.</p><button class="btn gold big" data-act="startVip">⚔ Desafio VIP</button></div>
+      <h3 style="margin-top:12px">Vitrine</h3><div class="grid">${vr.map((r) => { const has = profile.inventory.includes(r.id); return `<div class="card item ${has ? '' : 'locked'}" style="border-color:var(--gd)"><div class="ic">${has ? (r.kind === 'skin' ? tileSVG({ a: 6, b: 6 }, { w: 44, vertical: true, skin: 'ouro' }) : r.icon || (r.kind === 'fx' ? '✨' : r.kind === 'table' ? '🌌' : '🏅')) : '🔒'}</div><div><b>${r.name}</b><div class="mu">${has ? r.desc : C.condText(r)}</div></div></div>`; }).join('')}</div>
+      <p class="mu" style="margin-top:10px">Estrutura pronta para, no futuro, separar conteúdo gratuito e VIP no servidor. Nesta versão não existem pagamentos.</p></div></div>`;
+  };
+  SCREENS.settings = () => {
+    const s = profile.settings;
+    const sw = (k, label) => `<label class="sw"><input type="checkbox" data-set="${k}" ${s[k] ? 'checked' : ''}> <span>${label}</span></label>`;
+    const rg = (k, label) => `<label class="sw"><span class="grow">${label}</span><input type="range" min="0" max="1" step="0.05" value="${s[k]}" data-range="${k}" aria-label="${label}"></label>`;
+    return `<div class="scr">${topbar('Ajustes')}<div class="card"><h3>🔊 Áudio</h3>${sw('music', 'Música ambiente')}${rg('volMusic', 'Volume da música')}${sw('sfx', 'Efeitos sonoros')}${rg('volSfx', 'Volume dos efeitos')}<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn" data-act="testSounds">🎧 Testar sons</button><button class="btn ghost" data-act="toggleSound">${soundOn() ? '🔇 Jogar sem som' : '🔊 Ligar o som'}</button></div><p class="mu" style="font-size:.8rem">No iPhone, o som precisa que o botão lateral de silencioso esteja desligado e o volume do aparelho alto.</p></div>
+      <div class="card" style="margin-top:10px"><h3>♿ Acessibilidade</h3>${sw('reduceMotion', 'Reduzir animações, flashes e movimento')}${sw('highContrast', 'Alto contraste')}</div>
+      <div class="card" style="margin-top:10px"><h3>👆 Jogabilidade</h3><label class="sw"><input type="checkbox" data-set="quickPlay" ${quick() ? 'checked' : ''}> <span>Jogada rápida: 1 toque joga a peça quando só há um lugar</span></label>${sw('vibrate', 'Vibração ao jogar (celular)')}</div>
+      <div class="card" style="margin-top:10px"><h3>💾 Dados</h3><p class="mu">O progresso fica salvo neste navegador.</p><button class="btn ghost" data-act="resetAsk">Apagar meu progresso</button></div></div>`;
+  };
+
+  /* ================= Eventos ================= */
+  const H = {
+    noop() {}, closeModal() { closeModal(); },
+    toggleSound() {
+      const s = profile.settings, on = !soundOn();
+      s.music = on; s.sfx = on; save(); A.configure(s); A.unlock();
+      render(); if (on) setTimeout(() => A.play('select'), 120);
+    },
+    testSounds() {
+      A.unlock();
+      const seq = ['select', 'place', 'power:raio', 'power:portal', 'mystery', 'reward'];
+      seq.forEach((n, i) => setTimeout(() => A.play(n), 150 + i * 700));
+    },
+    go(d) { if (d.s !== 'game') G = d.s === 'home' ? null : G; go(d.s); },
+    pickMode(d) { pending.mode = d.m; go('difficulty'); },
+    startGame(d) {
+      const chaos = pending.mode === 'chaos';
+      pending.level = d.l; startGameFlow({ mode: pending.mode, level: d.l, powers: chaos });
+    },
+    again() { const g = G; if (!g) return go('home'); startGameFlow({ mode: g.st.mode, level: g.level, powers: g.st.powersOn, enemyEnergy: g.vip ? 5 : undefined, extra: { vip: g.vip, training: g.training, caseId: g.caseId } }); },
+    startTraining() { closeModal(); startGameFlow({ mode: 'training', level: 'easy', powers: false, extra: { training: true } }); },
+    startVip() { if (!C.isVipUnlocked(profile)) return toast('Desbloqueie o Clube VIP primeiro.'); closeModal(); startGameFlow({ mode: 'vip', level: 'hard', powers: true, enemyEnergy: 5, extra: { vip: true } }); },
+    startTutorial, tutGo,
+    pause() { showModal('<h2>⏸ Pausa</h2><p class="mu">Sem pressa! O jogo espera por você.</p><div style="display:grid;gap:8px"><button class="btn" data-act="closeModal">▶ Continuar</button><button class="btn ghost" data-act="restart">🔄 Reiniciar partida</button><button class="btn ghost" data-act="leave">🏠 Sair para o menu</button></div>'); },
+    restart() { const g = G; closeModal(); if (g && g.tut) return tutGo(); H.again(); },
+    leave() { G = null; go('home'); },
+    tile(d) {
+      if (!G) return; const g = G;
+      if (g.pick === 'portal' && canAct()) { doAction({ type: 'power', player: 'p', power: 'portal', arg: d.id }); return; }
+      if (!canAct()) { if (!g.finished && g.st.turn !== 'p') toast('Aguarde a vez do Volt.'); return; }
+      const can = E.playableTileIds(g.st, 'p').includes(d.id);
+      if (!can) { A.play('bad'); toast(g.st.forcedFirst && !g.st.board.length ? 'A primeira jogada precisa ser a peça indicada ✓.' : 'Essa peça não encaixa em nenhuma ponta.'); return; }
+      g.sel = g.sel === d.id ? null : d.id; A.play('select'); buzz(8);
+      if (g.sel && quick()) {
+        const t = g.st.hands.p.find((x) => x.id === g.sel);
+        const sides = Array.from(new Set(E.movesForTile(g.st, t, g.st.wildArmed).map((m) => m.side)));
+        if (sides.length === 1 && (!g.st.wildArmed || g.st.board.length === 0)) { playSel(sides[0]); return; }
+      }
+      render();
+    },
+    end(d) {
+      if (!G) return; const g = G;
+      if (!canAct()) return;
+      if (!g.sel) { toast('Primeiro toque numa peça com ✓.'); A.play('bad'); buzz([25, 40, 25]); return; }
+      playSel(d.s);
+    },
+    draw() { if (canAct()) doAction({ type: 'draw', player: 'p' }); },
+    pass() { if (canAct()) doAction({ type: 'pass', player: 'p' }); },
+    flip() { G.flip = !G.flip; render(); },
+    hint() {
+      if (!canAct()) return; const mv = E.chooseMove(G.st, 'p', 'medium', Math.random);
+      if (!mv) return toast(G.st.stock.length ? 'Sem jogadas: compre uma peça.' : 'Sem jogadas: passe a vez.');
+      G.hintTile = mv.tileId; G.sel = mv.tileId; render(); toast('💡 Esta peça é uma boa jogada.');
+    },
+    undo() { if (G && G.training && G.undo.length && !G.busy) { G.st = G.undo.pop(); G.sel = null; G.hintTile = null; G.lastId = null; G.msg = 'Desfeito! Tente outra jogada.'; render(); } },
+    power(d) {
+      if (!canAct()) return toast('Poderes só na sua vez.');
+      const id = d.id, st = G.st;
+      const err = E.powerError(st, 'p', id, st.hands.p[0] && st.hands.p[0].id);
+      if (err) { A.play('bad'); return toast(err); }
+      const pw = st.cfg.powers[id];
+      if (!profile.seenPowers.includes(id)) {
+        showModal(`<div style="text-align:center">${pIcon(id).replace('<svg', '<svg width="64" height="64"')}<h2>${pw.name}</h2></div><p>${pw.rule}</p><p class="mu">Custo: <b>${pw.cost}⚡</b>${pw.cd ? ' · Recarga: ' + pw.cd + ' turnos' : ''}${pw.limit ? ' · 1 vez por partida' : ''}</p><div class="row"><button class="btn grow gold" data-act="powerGo" data-id="${id}">Usar agora</button><button class="btn ghost grow" data-act="closeModal">Cancelar</button></div>`);
+        return;
+      }
+      H.powerGo({ id });
+    },
+    powerGo(d) {
+      closeModal(); if (!canAct()) return;
+      if (!profile.seenPowers.includes(d.id)) { profile.seenPowers.push(d.id); save(); }
+      if (d.id === 'portal') { G.pick = 'portal'; G.sel = null; render(); toast('🌀 Toque na peça da sua mão que quer trocar.'); return; }
+      doAction({ type: 'power', player: 'p', power: d.id });
+    },
+    cancelPick() { G.pick = null; render(); },
+    powerRules() { showModal(`<h2>📖 Poderes</h2><div style="display:grid;gap:10px;margin:8px 0">${E.POWER_IDS.map((id) => { const p = G.st.cfg.powers[id]; return `<div class="item"><div class="ic">${pIcon(id).replace('<svg', '<svg width="32" height="32"')}</div><div><b>${p.name}</b> · ${p.cost}⚡${p.cd ? ' · recarga ' + p.cd : ''}${p.limit ? ' · 1x' : ''}<div class="mu">${p.rule}</div></div></div>`; }).join('')}</div><p class="mu">Você ganha +1⚡ a cada turno (máx. ${G.st.cfg.maxEnergy}). Só 1 poder por turno.</p><button class="btn" style="width:100%" data-act="closeModal">Entendi</button>`); },
+    openCase(d) { D = { c: C.CASES.find((x) => x.id === d.id), hints: 0, seq: [], msg: '' }; go('case'); },
+    hint3() { if (D.hints < 3) { D.hints++; A.play('select'); render(); } },
+    answer(d) {
+      const ok = C.checkCase(D.c, d.v);
+      if (ok) caseSolved();
+      else { A.play('bad'); D.msg = 'Quase! Olhe de novo as pontas da mesa. Que tal pedir uma pista? 😊'; render(); }
+    },
+    chainAdd(d) {
+      const c = D.c; let cur = c.start; D.seq.forEach((id) => { const t = T(id); cur = t.a === cur ? t.b : t.a; });
+      const t = T(d.v);
+      if (t.a !== cur && t.b !== cur) { A.play('bad'); D.msg = 'Essa peça não encaixa com o ' + cur + '. Tente outra!'; render(); return; }
+      D.seq.push(d.v); A.play('place'); D.msg = '';
+      if (D.seq.length === c.tiles.length) { if (C.checkCase(c, D.seq)) { render(); caseSolved(); return; } D.msg = 'Quase! Falta ajustar a ordem. Tire a última peça e tente outra.'; }
+      render();
+    },
+    chainUndo() { D.seq.pop(); D.msg = ''; render(); }, chainClear() { D.seq = []; D.msg = ''; render(); },
+    closeAgency() { closeModal(); go('agency'); },
+    startCaseMatch() { const c = D.c; startGameFlow({ mode: c.mode, level: c.level, powers: c.mode === 'chaos', extra: { caseId: c.id } }); },
+    claim(d) { const r = C.claimQuest(profile, d.id); if (r.ok) { A.play('reward'); if (r.levelUp) A.play('level'); const f = C.syncRewards(profile); save(); toast('🎁 Missão resgatada: +' + r.q.reward.coins + ' moedas!'); render(); if (f.length) showRewards(f); } },
+    tab(d) { tab = d.k; render(); },
+    equip(d) { if (C.equip(profile, d.id)) { A.play('select'); save(); render(); } },
+    resetAsk() { showModal('<h2>Apagar progresso?</h2><p>Moedas, recompensas e casos resolvidos serão apagados deste navegador.</p><div class="row"><button class="btn grow pink" data-act="reset">Apagar</button><button class="btn ghost grow" data-act="closeModal">Cancelar</button></div>'); },
+    reset() { Object.assign(profile, C.defaultProfile()); save(); closeModal(); toast('Progresso apagado.'); go('home'); },
+  };
+  function playSel(side) {
+    const g = G; const sel = g.sel; if (!sel) return;
+    doAction({ type: 'play', player: 'p', tileId: sel, side, flip: g.flip });
+  }
+
+  document.addEventListener('click', (e) => {
+    const wasOn = A.running(); A.unlock();
+    const el = e.target.closest('[data-act]'); if (!el) return;
+    if (wasOn && !['tile', 'end', 'draw', 'pass', 'power', 'powerGo', 'answer', 'chainAdd', 'claim', 'equip', 'hint3', 'toggleSound', 'testSounds'].includes(el.dataset.act) && el.matches('button')) A.play('ui');
+    if (el.dataset.act === 'noop' && e.target !== el) return;
+    if (el.getAttribute('aria-disabled') === 'true' && el.dataset.act === 'power') { H.power(el.dataset); return; }
+    const f = H[el.dataset.act]; if (f && !el.disabled) f(el.dataset, el);
+  });
+  document.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.dataset.set) { profile.settings[t.dataset.set] = t.checked; save(); applySettings(); A.unlock(); }
+    if (t.dataset.range) { profile.settings[t.dataset.range] = parseFloat(t.value); save(); A.configure(profile.settings); }
+  });
+  // Arrastar e soltar (computador)
+  document.addEventListener('dragstart', (e) => {
+    const b = e.target.closest && e.target.closest('.tile-btn[data-id]'); if (!b || !canAct()) { e.preventDefault && e.preventDefault(); return; }
+    const id = b.dataset.id; if (!E.playableTileIds(G.st, 'p').includes(id)) { e.preventDefault(); return; }
+    G.sel = id; e.dataTransfer.setData('text/plain', id); e.dataTransfer.effectAllowed = 'move';
+    setTimeout(render, 0);
+  });
+  document.addEventListener('dragover', (e) => { const z = e.target.closest && e.target.closest('[data-dz]'); if (z && z.classList.contains('on')) { e.preventDefault(); z.classList.add('drop'); } });
+  document.addEventListener('dragleave', (e) => { const z = e.target.closest && e.target.closest('[data-dz]'); if (z) z.classList.remove('drop'); });
+  document.addEventListener('drop', (e) => { const z = e.target.closest && e.target.closest('[data-dz]'); if (!z) return; e.preventDefault(); if (canAct() && G.sel) playSel(z.dataset.dz); });
+  let rsz = null;
+  addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(() => { if (screen === 'game' && G) render(); }, 120); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && layer.innerHTML) closeModal(); });
+
+  try { if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && document.querySelector('link[rel=manifest]')) navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) { /* ignora */ }
+  window.__amelie = { get G() { return G; }, profile, go, H, render, tileSVG };
+  applySettings(); startStars(); render();
+})();
+</script>
+</body>
+</html>
